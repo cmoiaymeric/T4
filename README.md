@@ -30,7 +30,7 @@ Pour un exemple de ce qui est attenu, voir https://gitlab.unistra.fr/T234/t4-exe
 
 ### Objectifs pédagogiques
 
-Identifier 1 à 3 objectifs, avec un titre et une explication d'une phrase.
+Identifier 1 à 3 objectifs, avec un titre et une explication d'une phrase (évitez à tout prix les phrases interrogatives).
 
 #### Objectifs pédagogiques avancés 
 

@@ -5,13 +5,11 @@ Les étapes du projet tuteuré T2 sont les suivantes :
 1. 10h30
     1. Consulter le groupe qui vous est attribué dans le document des groupes.
     1. Dupliquer le contenu de ce fichier d’évaluation dans leur GIT, en suivant la règle de nommage `evaluation-Prénom_Nom.md` 
-      - Simplement cliquer sur "lien évaluation T4" (ou le copier dans un explorateur) devrait créer le fichier.
-      - Copier le corps du texte d'ici dans le fichier créé.
-      - Demander aux S4 de le faire si besoin, et vérifier que vous pouvez le modifier, en faisant un premier commit (bouton "source control" à gauche dans l'éditeur).
     1. Lire le cahier des charges, sans communiquer avec le groupe T4.
     1. Formuler des propositions d'amélioration du cahier des charges dans la section ci-dessous
         - l'objectif principal ici est d'identifier tout ce qui n'est pas parfaitement clair pour préparer un développement en T3 l'an prochain.
-1. 11h30
+    1. Dès que vous avez fini, passez à l'étape suivante :
+1. 13h30 au plus tard
     1. Rejoindre votre groupe T4
         - Regarder leur localisation dans le document des groupes.
     1. Jouer au jeu, et proposer des améliorations dans la section ci-dessous.
@@ -20,7 +18,7 @@ Les étapes du projet tuteuré T2 sont les suivantes :
         - Ne pas juste réécrire ou paraphraser un critère (Mauvais exemple : "_les commits sont pertinents_").
         - Apporter des informations concrètes (Exemple : "_il y a eu x commits par y personnes, et la moitié sont commentés clairement_").
     1. Faire le décompte "Résultat T4"
-1. 13h30
+1. 15h00
     1. Assister à la présentation plénière dans les amphis 1 ou 2.
 1. Rendu avant 17h30.
 
@@ -125,7 +123,7 @@ Justifications :
   - [ ] J'ai eu de l'intérêt en jouant, mais sans rien apprendre.
   - [x] Je n'ai pas eu d'intérêt en jouant.
 
-Résumer en une phrase ce que vous avez éventuellement appris :
+Résumer en une phrase ce que vous avez éventuellement appris en jouant :
 
 Autres justifications :
 
@@ -143,6 +141,8 @@ Autres justifications :
   - [ ] Cette partie est informative et succincte (1 phrase).
   - [ ] Cette partie est informative.
   - [ ] Cette partie n'est pas informative.
+
+Justifications :
 
 ## Cahier des charges 
 
@@ -185,9 +185,10 @@ Pour un exemple de ce qui est attenu, voir https://gitlab.unistra.fr/T234/t4-exe
   - [ ] Cette partie est informative.
   - [ ] Cette partie n'est pas informative.
 
+Justifications :
 
 ## Résultat T4
 - Total d'item « Excellent » (2 point) : 
 - Total d'item « Satisfaisant » (1 point) : 
 - Total d'item « Insatisfaisant » (0 point) :
-- total des points (sur 50) :
+- total des points (sur 40) :

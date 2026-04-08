@@ -1,5 +1,5 @@
 import type { CardData } from '../types/card';
-import heroImg from '../assets/hero.png';
+import heroImg from './assets/hero.png';
 
 // Card definitions - add new cards here
 export const CARDS: CardData[] = [

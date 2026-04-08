@@ -1,7 +1,7 @@
 # T4
 
 - Nom du groupe : BRATISLAVA X RABAT X PARIS
-- Membres du groupe : Ferencz ROUDET - Farouk LASFAR - Sacha EHRMANN - Aymeric FENARD
+- Membres du groupe : Ferencz ROUDET - Omar Farouk LASFAR - Sacha EHRMANN - Aymeric FENARD
 - Liens vers les évaluations T4 :
   - lien 1
   - lien 2

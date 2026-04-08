@@ -1,0 +1,102 @@
+@font-face {
+    font-family: 'Augustus';
+    src: url('/src/assets/fonts/AUGUSTUS.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ==================== Layout ==================== */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-accent-deep) 45%, var(--color-primary) 100%);
+    padding: 2rem;
+    font-family: 'Augustus', serif;
+    position: relative;
+}
+
+.game-deck-area {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    z-index: 10;
+}
+
+.game-card-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* ==================== Exit Button ==================== */
+.exit-button {
+    position: absolute !important;
+    top: 2rem !important;
+    right: 2rem !important;
+    color: var(--color-accent-light) !important;
+    font-size: 2.5rem !important;
+}
+
+.exit-button svg {
+    font-size: 2.5rem;
+}
+
+.exit-button:hover {
+    color: var(--color-accent-warm) !important;
+    background-color: rgba(216, 151, 60, 0.1) !important;
+}
+
+/* ==================== Shuffle Button ==================== */
+.shuffle-button {
+    font-family: 'Augustus', serif !important;
+    color: var(--color-accent-light) !important;
+    border: 2px solid var(--color-accent-light) !important;
+    font-weight: bold !important;
+}
+
+.shuffle-button:hover {
+    background-color: rgba(216, 151, 60, 0.15) !important;
+    border-color: var(--color-accent-warm) !important;
+    color: var(--color-accent-warm) !important;
+}
+
+/* ==================== Dialog Backdrop ==================== */
+.MuiBackdrop-root {
+    background-color: rgba(0, 0, 0, 0.365) !important;
+}
+
+/* ==================== Card Display ==================== */
+.card-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+}
+
+/* ==================== MUI Card Customization ==================== */
+.MuiCard-root {
+    font-family: 'Augustus', serif;
+    background-color: var(--color-accent-light) !important;
+    box-shadow: 0 8px 24px rgba(164, 36, 59, 0.15);
+    border-radius: 12px;
+}
+
+.MuiCardContent-root {
+    background-color: var(--color-accent-deep) !important;
+}
+
+.MuiCardContent-root .MuiTypography-root {
+    font-family: 'Augustus', serif;
+    color: var(--color-accent-light) !important;
+}
+
+.MuiTypography-root {
+    font-family: 'Augustus', serif;
+}

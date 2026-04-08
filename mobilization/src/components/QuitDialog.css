@@ -1,0 +1,47 @@
+/* Quit Dialog Styling */
+.quit-dialog .MuiPaper-root {
+    background-color: var(--color-secondary);
+    color: var(--color-accent-light);
+    border: 2px solid var(--color-accent-light);
+    border-radius: 10px;
+}
+
+.quit-dialog-title {
+    font-family: 'Augustus', serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-accent-light);
+}
+
+.quit-dialog-content {
+    font-family: 'Augustus', serif;
+    color: var(--color-accent-light);
+    min-width: 300px;
+}
+
+.quit-dialog-actions {
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.quit-dialog-btn-cancel {
+    font-family: 'Augustus', serif !important;
+    color: var(--color-accent-light) !important;
+    border: 2px solid var(--color-accent-light) !important;
+}
+
+.quit-dialog-btn-cancel:hover {
+    background-color: rgba(216, 151, 60, 0.1) !important;
+    border-color: var(--color-accent-warm) !important;
+    color: var(--color-accent-warm) !important;
+}
+
+.quit-dialog-btn-confirm {
+    font-family: 'Augustus', serif !important;
+    background-color: var(--color-primary) !important;
+    color: var(--color-accent-light) !important;
+}
+
+.quit-dialog-btn-confirm:hover {
+    background-color: var(--color-accent-warm) !important;
+}

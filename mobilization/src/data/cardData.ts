@@ -8,6 +8,7 @@ import absenceImg from '../assets/illustrations/Absence.png';
 import loyerImg from '../assets/illustrations/LoyerAPayer.png';
 import retardBourseImg from '../assets/illustrations/RetardBourse.png';
 import soireeImg from '../assets/illustrations/SoireeTourneMal.png';
+import heroImg from '../assets/hero.png';
 
 export const CARDS: CardData[] = [
     {
@@ -52,6 +53,38 @@ export const CARDS: CardData[] = [
         description: 'Une nouvelle tragique frappe le contingent. Le deuil impacte la cohésion nationale.',
         image: decesImg,
     },
+];
+
+function buildRepeatedCards(
+    prefix: string,
+    name: string,
+    description: string,
+    image: string,
+    count: number,
+): CardData[] {
+    return Array.from({ length: count }, (_, index) => ({
+        id: `${prefix}-${index + 1}`,
+        name,
+        description,
+        image,
+    }));
+}
+
+export const WORK_STUDY_CARDS: CardData[] = [
+    ...buildRepeatedCards(
+        'travailler',
+        'Travailler',
+        'Vous prenez un travail pour améliorer vos ressources et votre stabilité.',
+        heroImg,
+        14,
+    ),
+    ...buildRepeatedCards(
+        'etudier',
+        'Étudier',
+        'Vous étudiez pour progresser et débloquer de nouvelles opportunités.',
+        heroImg,
+        14,
+    ),
 ];
 
 export default CARDS;

@@ -1,0 +1,101 @@
+:root {
+    --color-primary: #A4243B;
+    --color-accent-light: #D8C99B;
+    --color-accent-warm: #D8973C;
+    --color-accent-deep: #BD632F;
+    --color-secondary: #273E47;
+}
+
+.about-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    background:
+        radial-gradient(circle at top left, rgba(216, 151, 60, 0.2), transparent 30%),
+        linear-gradient(140deg, var(--color-secondary) 0%, var(--color-accent-deep) 48%, var(--color-primary) 100%);
+    font-family: 'Augustus', serif;
+}
+
+.about-panel {
+    width: min(900px, 100%);
+    padding: 2rem;
+    border: 2px solid var(--color-accent-light);
+    border-radius: 20px;
+    background: rgba(39, 62, 71, 0.88);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.35);
+    color: var(--color-accent-light);
+    text-align: center;
+}
+
+.about-kicker {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.85rem;
+    opacity: 0.85;
+}
+
+.about-title {
+    margin: 0.5rem 0 1rem;
+    font-size: clamp(2.3rem, 5vw, 4rem);
+}
+
+.about-text {
+    margin: 0 auto 1.75rem;
+    max-width: 720px;
+    color: #f0e5c4;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+}
+
+.about-card {
+    padding: 1.1rem;
+    border-radius: 16px;
+    background: rgba(164, 36, 59, 0.18);
+    border: 1px solid rgba(216, 201, 155, 0.7);
+    text-align: left;
+}
+
+.about-card h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+}
+
+.about-card p {
+    margin: 0;
+    color: #f0e5c4;
+    line-height: 1.5;
+}
+
+.about-back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.4rem;
+    border-radius: 999px;
+    border: 2px solid var(--color-accent-light);
+    color: var(--color-accent-light);
+    text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.about-back-link:hover {
+    transform: translateY(-1px);
+    border-color: var(--color-accent-warm);
+    color: var(--color-accent-warm);
+    background: rgba(216, 151, 60, 0.12);
+}
+
+@media (max-width: 800px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+}

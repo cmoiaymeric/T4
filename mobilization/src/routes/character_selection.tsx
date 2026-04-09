@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import './character_selection.css';
 
 import algerienPng from '../assets/illustrations/algerien.png';
+import aemerikImg from '../assets/illustrations/aemerik.jpg';
 import djasonPng from '../assets/illustrations/djason.png';
 import emrePng from '../assets/illustrations/emre.png';
 import kadirPng from '../assets/illustrations/kadir.png';
@@ -68,6 +69,15 @@ const CHARACTER_CATALOG: Character[] = [
         nationality: 'Francais',
         flag: '🇫🇷',
         image: raphusPng,
+    },
+    {
+        id: 'aemerik',
+        firstName: 'Aemerik',
+        lastName: 'Lefevre',
+        nationality: 'Francais',
+        flag: '🇫🇷',
+        image: aemerikImg,
+        trait: 'Hyper nul en maths',
     },
     {
         id: 'emre',

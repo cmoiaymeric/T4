@@ -9,11 +9,43 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     min-height: 100vh;
     background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-accent-deep) 45%, var(--color-primary) 100%);
     padding: 2rem;
     font-family: 'Augustus', serif;
+}
+
+.menu-title-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3rem;
+}
+
+.menu-buttons-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.menu-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--color-accent-light);
+    font-size: 0.9rem;
+    padding-bottom: 1rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
 }
 
 .App h1 {
@@ -88,16 +120,38 @@
     font-family: 'Augustus', serif;
 }
 
+/* Button Style*/
+
 .btn-jouer {
     font-family: 'Augustus', serif;
     color: var(--color-accent-light) !important;
     border-color: var(--color-accent-light) !important;
-    background-color: transparent;
-    transition: transform 0.7s ease;
+    border: 3px solid var(--color-accent-light) !important;
+    font-size: 1.5rem !important;
+    padding: 1rem 3rem !important;
+    background-color: var(--color-primary) !important;
+    transition: transform 0.4s ease !important;
 }
 
 .btn-jouer:hover {
     background-color: var(--color-primary);
-    color: var(--color-accent-light) !important;
+    color: var(--color-accent-light);
     transform: scale(1.20);
+}
+
+.btn-small {
+    font-size: 1rem !important;
+    padding: 0.7rem 1.5rem !important;
+    background-color: transparent !important;
+    border: 2px solid var(--color-accent-light) !important;
+    color: var(--color-accent-light) !important;
+    font-family: 'Augustus', serif !important;
+    transition: transform 0.4s ease !important;
+}
+
+.btn-small:hover {
+    background-color: rgba(216, 151, 60, 0.1) !important;
+    border-color: var(--color-accent-warm) !important;
+    color: var(--color-accent-warm) !important;
+    transform: scale(1.1);
 }

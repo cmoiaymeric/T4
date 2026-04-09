@@ -177,20 +177,49 @@
     z-index: 10;
 }
 
+.deck-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.4rem;
+}
+
+.deck-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.deck-title {
+    margin: 0 0 0.35rem;
+    color: var(--color-accent-light);
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+}
+
 .game-card-area {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 1;
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 32;
     perspective: 1400px;
-    z-index: 1;
   }
+
+.game-card-area.active {
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.14);
+}
   
 .drawn-card-shell {
-    width: 100%;
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: auto;
+    cursor: pointer;
+    filter: drop-shadow(0 18px 35px rgba(0, 0, 0, 0.42));
 }
 
 .game-header-center {
@@ -248,6 +277,111 @@
     box-shadow: 0 10px 18px rgba(0, 0, 0, 0.24);
 }
 
+.inventory-panel {
+    position: absolute;
+    left: 2rem;
+    bottom: 2rem;
+    width: min(560px, 58vw);
+    border-radius: 12px;
+    z-index: 12;
+}
+
+.inventory-handle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid rgba(216, 201, 155, 0.5);
+    border-radius: 10px;
+    background: rgba(39, 62, 71, 0.78);
+    color: var(--color-accent-light);
+    font-size: 0.92rem;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+    cursor: default;
+}
+
+.inventory-content {
+    margin-top: 0.55rem;
+    border: 1px solid rgba(216, 201, 155, 0.35);
+    border-radius: 12px;
+    background: rgba(39, 62, 71, 0.58);
+    padding: 0.75rem;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.inventory-panel:hover .inventory-content {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.inventory-title {
+    margin: 0 0 0.55rem;
+    color: var(--color-accent-light);
+    font-size: 0.95rem;
+}
+
+.inventory-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.55rem;
+    min-height: 96px;
+}
+
+.inventory-card {
+    min-height: 104px;
+    border-radius: 10px;
+    padding: 0.5rem 0.55rem;
+    border: 1px solid rgba(216, 201, 155, 0.35);
+    background: rgba(39, 62, 71, 0.7);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.24);
+}
+
+.inventory-card.work {
+    background: linear-gradient(155deg, rgba(189, 99, 47, 0.38), rgba(164, 36, 59, 0.22));
+    border-color: rgba(189, 99, 47, 0.65);
+}
+
+.inventory-card.study {
+    background: linear-gradient(155deg, rgba(39, 62, 71, 0.86), rgba(216, 151, 60, 0.2));
+    border-color: rgba(216, 201, 155, 0.55);
+}
+
+.inventory-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-bottom: 0.3rem;
+}
+
+.inventory-card-emoji {
+    font-size: 1rem;
+}
+
+.inventory-card-name {
+    color: var(--color-accent-light);
+    font-size: 0.92rem;
+}
+
+.inventory-card-description {
+    margin: 0;
+    color: rgba(255, 239, 206, 0.95);
+    font-size: 0.72rem;
+    line-height: 1.2;
+}
+
+.inventory-empty {
+    margin: 0.2rem 0;
+    grid-column: 1 / -1;
+    color: rgba(216, 201, 155, 0.86);
+    font-size: 0.88rem;
+}
+
 /* ==================== Dialog Backdrop ==================== */
 .MuiBackdrop-root {
     background-color: rgba(0, 0, 0, 0.365) !important;
@@ -280,15 +414,6 @@
 
 .MuiTypography-root {
     font-family: 'Augustus', serif;
-}
-
-.empty-card-hint {
-    font-size: 1.15rem;
-    color: var(--color-accent-light);
-    padding: 0.8rem 1.2rem;
-    border-radius: 12px;
-    background-color: rgba(39, 62, 71, 0.35);
-    border: 1px solid rgba(216, 201, 155, 0.35);
 }
 
 @keyframes ambient-shift {
@@ -383,6 +508,23 @@
 
     .game-header-center {
         top: 0.6rem;
+    }
+
+    .inventory-panel {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        width: auto;
+    }
+
+    .inventory-content {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+    }
+
+    .inventory-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .exit-button {

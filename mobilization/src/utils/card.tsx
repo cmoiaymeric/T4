@@ -1,33 +1,35 @@
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import heroImg from '../assets/hero.png'
+import type { CardData } from '../types/card';
 
-export default function ImgMediaCard() {
+interface GameCardProps {
+    card: CardData;
+}
+
+export default function GameCard({ card }: GameCardProps) {
     return (
-        <Card sx={{ maxWidth: 225 }}>
+        <Card sx={{ maxWidth: 225, fontFamily: 'Augustus, serif' }}>
             <CardMedia
                 component="img"
-                alt="green iguana"
+                alt={card.name}
                 height="170"
-                image={heroImg}
+                image={card.image}
             />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    Lizard
+            <CardContent sx={{ backgroundColor: '#BD632F' }}>
+                <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{ color: '#D8C99B', fontFamily: 'Augustus, serif', fontWeight: 'bold' }}
+                >
+                    {card.name}
                 </Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                    species, ranging across all continents except Antarctica
+                <Typography variant="body2" sx={{ color: '#D8C99B', fontFamily: 'Augustus, serif' }}>
+                    {card.description}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small">Share</Button>
-                <Button size="small">Learn More</Button>
-            </CardActions>
         </Card>
     );
 }

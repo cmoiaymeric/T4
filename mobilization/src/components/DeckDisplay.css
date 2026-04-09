@@ -1,0 +1,70 @@
+.deck-stack {
+    position: relative;
+    width: 160px;
+    height: 220px;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    perspective: 1000px;
+}
+
+.deck-stack.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.deck-stack.clickable:hover {
+    transform: scale(1.05);
+}
+
+.card-layer {
+    position: absolute;
+    width: 140px;
+    height: 200px;
+    background: linear-gradient(135deg, #D8C99B 0%, #BD632F 100%);
+    border: 2px solid #A4243B;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.layer-1 {
+    top: 0;
+    left: 0;
+    z-index: 3;
+    transform: translateY(0) rotateZ(0deg);
+}
+
+.layer-2 {
+    top: 8px;
+    left: 6px;
+    z-index: 2;
+    background: linear-gradient(135deg, #D8973C 0%, #A4243B 100%);
+}
+
+.layer-3 {
+    top: 16px;
+    left: 12px;
+    z-index: 1;
+    background: linear-gradient(135deg, #273E47 0%, #BD632F 100%);
+}
+
+.deck-stack.clickable:hover .layer-1 {
+    transform: translateY(-4px) rotateZ(-2deg);
+}
+
+.deck-stack.clickable:hover .layer-2 {
+    transform: translateY(-2px) rotateZ(1deg);
+}
+
+.card-count {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Augustus', serif;
+    font-size: 1.5rem;
+    color: #D8C99B;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+}

@@ -1,0 +1,89 @@
+@font-face {
+    font-family: 'Augustus';
+    src: url('/src/assets/fonts/AUGUSTUS.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-accent-deep) 45%, var(--color-primary) 100%);
+    padding: 2rem;
+    font-family: 'Augustus', serif;
+}
+
+.App h1 {
+    color: var(--color-accent-light);
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-family: 'Augustus', serif;
+}
+
+.deck-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.deck-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.card-display {
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-card {
+    color: var(--color-accent-light);
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+/* MUI Component Customization */
+.MuiCard-root {
+    font-family: 'Augustus', serif;
+    background-color: var(--color-accent-light) !important;
+    box-shadow: 0 8px 24px rgba(164, 36, 59, 0.15);
+    border-radius: 12px;
+}
+
+.MuiCardContent-root {
+    background-color: var(--color-accent-deep) !important;
+}
+
+.MuiCardContent-root .MuiTypography-root {
+    font-family: 'Augustus', serif;
+    color: var(--color-accent-light) !important;
+}
+
+.MuiCardActions-root {
+    background-color: var(--color-secondary);
+    border-top: 2px solid var(--color-primary);
+}
+
+.MuiButton-root {
+    font-family: 'Augustus', serif;
+    color: var(--color-accent-light) !important;
+    border-color: var(--color-accent-light) !important;
+}
+
+.MuiButton-root:hover {
+    background-color: var(--color-primary);
+    color: var(--color-accent-light) !important;
+}
+
+.MuiTypography-root {
+    font-family: 'Augustus', serif;
+}

@@ -2,9 +2,16 @@
     position: relative;
     width: 160px;
     height: 220px;
+    display: block;
     cursor: pointer;
     margin-bottom: 2rem;
     perspective: 1000px;
+    border: none;
+    background: transparent;
+    padding: 0;
+    font: inherit;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .deck-stack.disabled {
@@ -12,8 +19,8 @@
     cursor: not-allowed;
 }
 
-.deck-stack.clickable:hover {
-    transform: scale(1.05);
+.deck-stack.clickable {
+    animation: deck-float 2.9s ease-in-out infinite;
 }
 
 .card-layer {
@@ -48,6 +55,13 @@
     background: linear-gradient(135deg, #273E47 0%, #BD632F 100%);
 }
 
+.layer-4 {
+    top: 24px;
+    left: 18px;
+    z-index: 0;
+    background: linear-gradient(135deg, #1f3138 0%, #7b3f2a 100%);
+}
+
 .deck-stack.clickable:hover .layer-1 {
     transform: translateY(-4px) rotateZ(-2deg);
 }
@@ -67,4 +81,16 @@
     font-weight: bold;
     text-align: center;
     width: 100%;
+}
+
+@keyframes deck-float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
 }

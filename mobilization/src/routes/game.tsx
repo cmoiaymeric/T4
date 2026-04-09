@@ -1,5 +1,5 @@
 import './game.css'
-import GameCard from '../utils/card';
+import GameCard from '../components/Card';
 import DeckDisplay from '../components/DeckDisplay';
 import QuitDialog from '../components/QuitDialog';
 import { useDeck } from '../hooks/useDeck';

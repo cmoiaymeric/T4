@@ -87,3 +87,17 @@
 .MuiTypography-root {
     font-family: 'Augustus', serif;
 }
+
+.btn-jouer {
+    font-family: 'Augustus', serif;
+    color: var(--color-accent-light) !important;
+    border-color: var(--color-accent-light) !important;
+    background-color: transparent;
+    transition: transform 0.7s ease;
+}
+
+.btn-jouer:hover {
+    background-color: var(--color-primary);
+    color: var(--color-accent-light) !important;
+    transform: scale(1.20);
+}

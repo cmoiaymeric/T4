@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import './character_selection.css';
 
-import personnageBlanc from '../assets/illustrations/PersonnageBlanc.png';
-import personnageFilleBlanche from '../assets/illustrations/PersonnageFilleBlanche.png';
-import personnageNoir from '../assets/illustrations/PersonnageNoir.jpg';
-import personnageFilleNoir from '../assets/illustrations/PersonnageNoirFille.jpeg';
-import personnageAsiatique from '../assets/illustrations/PersonnageAsiatique.jpg';
-import personnageAsiatiqueFille from '../assets/illustrations/PersonnageAsiatiqueFille.png';
+import algerienPng from '../assets/illustrations/algerien.png';
+import djasonPng from '../assets/illustrations/djason.png';
+import emrePng from '../assets/illustrations/emre.png';
+import kadirPng from '../assets/illustrations/kadir.png';
+import momoPng from '../assets/illustrations/momo.png';
+import ofmarokiPng from '../assets/illustrations/ofmaroki.png';
+import raphusPng from '../assets/illustrations/raphus.png';
 
 type Character = {
     id: string;
@@ -16,109 +17,67 @@ type Character = {
     nationality: string;
     flag: string;
     image: string;
+    trait?: string;
 };
 
-type CharacterTemplate = {
-    id: string;
-    image: string;
-    gender: 'guy' | 'girl';
-    profile: 'european-male' | 'european-female' | 'afro-male' | 'afro-female' | 'asian-male' | 'asian-female';
-};
-
-type Nationality = { name: string; flag: string };
-type CharacterNamePool = {
-    firstNames: string[];
-    lastNames: string[];
-    nationalities: Nationality[];
-};
-
-const FORCED_NATIONALITIES_BY_NAME: Record<string, Nationality> = {
-    ofmaroki: { name: 'Marocain', flag: '🇲🇦' },
-    algerien: { name: 'Algerien', flag: '🇩🇿' },
-    momo: { name: 'Turc', flag: '🇹🇷' },
-    kadir: { name: 'Turc', flag: '🇹🇷' },
-    djason: { name: 'Camerounais', flag: '🇨🇲' },
-    raphhus: { name: 'Francais', flag: '🇫🇷' },
-};
-
-const NAME_POOLS: Record<CharacterTemplate['profile'], CharacterNamePool> = {
-    'european-male': {
-        firstNames: ['Lucas', 'Noah', 'Hugo', 'Matteo', 'Theo', 'Luca', 'Raphhus'],
-        lastNames: ['Moreau', 'Dubois', 'Martin', 'Rossi', 'Garcia', 'Schneider'],
-        nationalities: [
-            { name: 'French', flag: '🇫🇷' },
-            { name: 'German', flag: '🇩🇪' },
-            { name: 'Spanish', flag: '🇪🇸' },
-            { name: 'Italian', flag: '🇮🇹' },
-            { name: 'American', flag: '🇺🇸' },
-            { name: 'Canadian', flag: '🇨🇦' },
-        ],
+const CHARACTER_CATALOG: Character[] = [
+    {
+        id: 'ofmaroki',
+        firstName: 'Ofmaroki',
+        lastName: 'Benali',
+        nationality: 'Marocain',
+        flag: '🇲🇦',
+        image: ofmarokiPng,
     },
-    'european-female': {
-        firstNames: ['Emma', 'Lea', 'Sofia', 'Camille', 'Giulia', 'Ines'],
-        lastNames: ['Roux', 'Lemoine', 'Aubry', 'Lopez', 'Bianchi', 'Weber'],
-        nationalities: [
-            { name: 'French', flag: '🇫🇷' },
-            { name: 'German', flag: '🇩🇪' },
-            { name: 'Spanish', flag: '🇪🇸' },
-            { name: 'Italian', flag: '🇮🇹' },
-            { name: 'American', flag: '🇺🇸' },
-            { name: 'Canadian', flag: '🇨🇦' },
-        ],
+    {
+        id: 'algerien',
+        firstName: 'Algerien',
+        lastName: 'Bouzid',
+        nationality: 'Algerien',
+        flag: '🇩🇿',
+        image: algerienPng,
     },
-    'afro-male': {
-        firstNames: ['Noah', 'Amadou', 'Malik', 'Khalil', 'Idris', 'Yanis', 'Ofmaroki', 'Algerien', 'Djason'],
-        lastNames: ['Diallo', 'Traore', 'Ndiaye', 'Mensah', 'Sow', 'Okoro'],
-        nationalities: [
-            { name: 'Brazilian', flag: '🇧🇷' },
-            { name: 'American', flag: '🇺🇸' },
-            { name: 'Canadian', flag: '🇨🇦' },
-            { name: 'Lebanese', flag: '🇱🇧' },
-            { name: 'Jordanian', flag: '🇯🇴' },
-            { name: 'Turkish', flag: '🇹🇷' },
-        ],
+    {
+        id: 'momo',
+        firstName: 'Momo',
+        lastName: 'Yildiz',
+        nationality: 'Turc',
+        flag: '🇹🇷',
+        image: momoPng,
     },
-    'afro-female': {
-        firstNames: ['Aicha', 'Nora', 'Yasmine', 'Fatou', 'Imane', 'Maya'],
-        lastNames: ['Diallo', 'Mendy', 'Benamara', 'Traore', 'Ba', 'Ndiaye'],
-        nationalities: [
-            { name: 'Brazilian', flag: '🇧🇷' },
-            { name: 'American', flag: '🇺🇸' },
-            { name: 'Canadian', flag: '🇨🇦' },
-            { name: 'Lebanese', flag: '🇱🇧' },
-            { name: 'Jordanian', flag: '🇯🇴' },
-            { name: 'Turkish', flag: '🇹🇷' },
-        ],
+    {
+        id: 'kadir',
+        firstName: 'Kadir',
+        lastName: 'Demir',
+        nationality: 'Turc',
+        flag: '🇹🇷',
+        image: kadirPng,
     },
-    'asian-male': {
-        firstNames: ['Wei', 'Hiro', 'Minh', 'Sung', 'Takeshi', 'Jin', 'Momo', 'Kadir'],
-        lastNames: ['Chen', 'Yamamoto', 'Nguyen', 'Park', 'Tanaka', 'Kumar'],
-        nationalities: [
-            { name: 'Chinese', flag: '🇨🇳' },
-            { name: 'Japanese', flag: '🇯🇵' },
-            { name: 'Vietnamese', flag: '🇻🇳' },
-            { name: 'Korean', flag: '🇰🇷' },
-        ],
+    {
+        id: 'djason',
+        firstName: 'Djason',
+        lastName: 'Ndzi',
+        nationality: 'Camerounais',
+        flag: '🇨🇲',
+        image: djasonPng,
     },
-    'asian-female': {
-        firstNames: ['Mei', 'Yuki', 'Linh', 'Sung', 'Takeshi', 'Jin'],
-        lastNames: ['Chen', 'Yamamoto', 'Nguyen', 'Park', 'Tanaka', 'Kumar'],
-        nationalities: [
-            { name: 'Chinese', flag: '🇨🇳' },
-            { name: 'Japanese', flag: '🇯🇵' },
-            { name: 'Vietnamese', flag: '🇻🇳' },
-            { name: 'Korean', flag: '🇰🇷' },
-        ],
-    }
-};
-
-const CHARACTER_TEMPLATES: CharacterTemplate[] = [
-    { id: 'personnage-blanc', image: personnageBlanc, gender: 'guy', profile: 'european-male' },
-    { id: 'personnage-fille-blanche', image: personnageFilleBlanche, gender: 'girl', profile: 'european-female' },
-    { id: 'personnage-noir', image: personnageNoir, gender: 'guy', profile: 'afro-male' },
-    { id: 'personnage-fille-noir', image: personnageFilleNoir, gender: 'girl', profile: 'afro-female' },
-    { id: 'personnage-asiatique', image: personnageAsiatique, gender: 'guy', profile: 'asian-male' },
-    { id: 'personnage-fille-asiatique', image: personnageAsiatiqueFille, gender: 'girl', profile: 'asian-female' },
+    {
+        id: 'raphus',
+        firstName: 'Raphus',
+        lastName: 'Morel',
+        nationality: 'Francais',
+        flag: '🇫🇷',
+        image: raphusPng,
+    },
+    {
+        id: 'emre',
+        firstName: 'Emre',
+        lastName: 'Aydin',
+        nationality: 'Turc',
+        flag: '🇹🇷',
+        image: emrePng,
+        trait: 'Fort en maths',
+    },
 ];
 
 function pickRandomItem<T>(items: T[]): T {
@@ -127,22 +86,24 @@ function pickRandomItem<T>(items: T[]): T {
 }
 
 function pickRandomCharacter(): Character {
-    const template = pickRandomItem(CHARACTER_TEMPLATES);
-    const pool = NAME_POOLS[template.profile];
+    return pickRandomItem(CHARACTER_CATALOG);
+}
 
-    const firstName = pickRandomItem(pool.firstNames);
-    const lastName = pickRandomItem(pool.lastNames);
-    const forcedNationality = FORCED_NATIONALITIES_BY_NAME[firstName.toLowerCase()];
-    const nationality = forcedNationality ?? pickRandomItem(pool.nationalities);
+function pickRandomCharacterWithDifferentImage(previousImage?: string): Character {
+    if (!previousImage) {
+        return pickRandomCharacter();
+    }
 
-    return {
-        id: template.id,
-        image: template.image,
-        firstName,
-        lastName,
-        nationality: nationality.name,
-        flag: nationality.flag,
-    };
+    let nextCharacter = pickRandomCharacter();
+    let attempts = 0;
+
+    // Retry a few times so the relaunch button visibly changes the picture.
+    while (nextCharacter.image === previousImage && attempts < 20) {
+        nextCharacter = pickRandomCharacter();
+        attempts += 1;
+    }
+
+    return nextCharacter;
 }
 
 function CharacterSelection() {
@@ -154,7 +115,7 @@ function CharacterSelection() {
     }, []);
 
     const handleRandomize = () => {
-        setSelectedCharacter(pickRandomCharacter());
+        setSelectedCharacter((previous) => pickRandomCharacterWithDifferentImage(previous?.image));
     };
 
     const handleContinue = () => {
@@ -181,6 +142,9 @@ function CharacterSelection() {
                         <p className="character-nationality">
                             {selectedCharacter.flag} {selectedCharacter.nationality}
                         </p>
+                        {selectedCharacter.trait && (
+                            <p className="character-trait">{selectedCharacter.trait}</p>
+                        )}
                     </article>
                 )}
 

@@ -1,0 +1,109 @@
+:root {
+    --color-primary: #A4243B;
+    --color-accent-light: #D8C99B;
+    --color-accent-warm: #D8973C;
+    --color-accent-deep: #BD632F;
+    --color-secondary: #273E47;
+}
+
+.character-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    background: linear-gradient(140deg, var(--color-secondary) 0%, var(--color-accent-deep) 48%, var(--color-primary) 100%);
+    font-family: 'Augustus', serif;
+}
+
+.character-panel {
+    width: min(680px, 100%);
+    padding: 2rem;
+    border: 2px solid var(--color-accent-light);
+    border-radius: 16px;
+    background: rgba(39, 62, 71, 0.82);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    text-align: center;
+}
+
+.character-title {
+    margin: 0;
+    color: var(--color-accent-light);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    letter-spacing: 0.04em;
+}
+
+.character-subtitle {
+    margin: 0.5rem 0 1.5rem;
+    color: #f0e5c4;
+}
+
+.character-card {
+    border: 2px solid var(--color-accent-light);
+    border-radius: 14px;
+    padding: 1rem;
+    background: rgba(164, 36, 59, 0.2);
+}
+
+.character-image {
+    width: 320px;
+    height: 340px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+    border: 2px solid var(--color-accent-light);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+.character-name {
+    margin: 1rem 0 0;
+    color: var(--color-accent-light);
+    font-size: 1.6rem;
+}
+
+.character-nationality {
+    margin: 0.35rem 0 0;
+    color: #f0e5c4;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+}
+
+.character-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.character-button {
+    border: 2px solid var(--color-accent-light);
+    border-radius: 10px;
+    padding: 0.75rem 1.6rem;
+    font-size: 1rem;
+    font-family: 'Augustus', serif;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.character-button:hover {
+    transform: translateY(-1px);
+}
+
+.character-button-primary {
+    background: var(--color-primary);
+    color: var(--color-accent-light);
+}
+
+.character-button-primary:hover {
+    background: var(--color-accent-warm);
+}
+
+.character-button-secondary {
+    background: rgba(216, 151, 60, 0.15);
+    color: var(--color-accent-light);
+}
+
+.character-button-secondary:hover {
+    border-color: var(--color-accent-warm);
+    color: var(--color-accent-warm);
+}

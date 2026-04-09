@@ -4,6 +4,7 @@
     color: var(--color-accent-light);
     border: 2px solid var(--color-accent-light);
     border-radius: 10px;
+    animation: dialog-pop 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .quit-dialog-title {
@@ -44,4 +45,15 @@
 
 .quit-dialog-btn-confirm:hover {
     background-color: var(--color-accent-warm) !important;
+}
+
+@keyframes dialog-pop {
+    0% {
+        opacity: 0;
+        transform: translateY(14px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }

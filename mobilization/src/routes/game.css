@@ -14,6 +14,140 @@
     padding: 2rem;
     font-family: 'Augustus', serif;
     position: relative;
+    overflow: hidden;
+}
+
+.round-transition-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    overflow: hidden;
+    background: transparent;
+    backdrop-filter: blur(18px) saturate(105%);
+}
+
+.round-transition-overlay::before,
+.round-transition-overlay::after {
+    content: '';
+    position: absolute;
+    inset: -35%;
+    background-repeat: no-repeat;
+    opacity: 0.85;
+}
+
+.round-transition-overlay::before {
+    background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.32) 0 9%, transparent 11%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.22) 0 12%, transparent 14%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.12) 0 8%, transparent 10%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.06) 0 20%, transparent 24%);
+    background-size: 10rem 10rem, 14rem 14rem, 18rem 18rem, 34rem 34rem;
+    background-position: 7% 22%, 86% 28%, 52% 84%, center;
+    animation: round-burst 900ms ease-out both, round-drift 1200ms ease-in-out infinite alternate;
+}
+
+.round-transition-overlay::after {
+    background-image:
+        linear-gradient(115deg, transparent 0 42%, rgba(255, 255, 255, 0.16) 50%, transparent 58% 100%),
+        linear-gradient(45deg, rgba(255, 255, 255, 0.08) 0 12%, transparent 12% 25%, rgba(255, 255, 255, 0.06) 25% 38%, transparent 38% 100%);
+    background-size: 280% 280%, 320% 320%;
+    animation: round-sweep 900ms ease-out both, round-streaks 900ms ease-out both;
+}
+
+.round-transition-core {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: transparent;
+    overflow: hidden;
+}
+
+.round-transition-core::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-top: 2px solid rgba(255, 255, 255, 0.28);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+    animation: round-border-glow 900ms ease-out both;
+}
+
+.round-transition-label {
+    position: relative;
+    display: block;
+    font-size: clamp(4rem, 16vw, 10rem);
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow:
+        0 0 18px rgba(255, 255, 255, 0.18),
+        0 18px 44px rgba(0, 0, 0, 0.58);
+}
+
+.round-transition-core::after {
+    content: '';
+    position: absolute;
+    inset: 12% 6%;
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.24);
+    box-shadow:
+        0 0 0 9999px rgba(255, 255, 255, 0.02),
+        inset 0 0 90px rgba(255, 255, 255, 0.05);
+    animation: round-ring 900ms ease-out both;
+}
+
+.round-transition-label::after {
+    content: '';
+    display: block;
+    width: min(420px, 74vw);
+    height: 4px;
+    margin: 1.25rem auto 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+}
+
+.game-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(216, 151, 60, 0.18), transparent 38%),
+        radial-gradient(circle at 85% 12%, rgba(164, 36, 59, 0.2), transparent 42%),
+        radial-gradient(circle at 40% 85%, rgba(216, 201, 155, 0.14), transparent 38%);
+    pointer-events: none;
+    animation: ambient-shift 10s ease-in-out infinite alternate;
+}
+
+.game-container > * {
+    position: relative;
+}
+
+.game-page-content {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.game-container.round-transition-active .game-page-content {
+    filter: blur(18px);
+    transform: scale(1.01);
+}
+
+.game-exit-area {
+    position: relative;
+    z-index: 25;
 }
 
 .game-deck-area {
@@ -31,8 +165,38 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: 1;
     min-height: 100vh;
     width: 100%;
+    perspective: 1400px;
+    z-index: 1;
+}
+
+.drawn-card-shell {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-header-center {
+    position: absolute;
+    top: 1.3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 12;
+}
+
+.round-indicator {
+    min-width: 172px;
+    text-align: center;
+    color: var(--color-accent-light);
+    border: 2px solid rgba(216, 201, 155, 0.7);
+    border-radius: 999px;
+    padding: 0.5rem 1.1rem;
+    background: linear-gradient(120deg, rgba(39, 62, 71, 0.78), rgba(164, 36, 59, 0.72));
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.26);
+    letter-spacing: 0.04em;
 }
 
 /* ==================== Exit Button ==================== */
@@ -40,6 +204,7 @@
     position: absolute !important;
     top: 2rem !important;
     right: 2rem !important;
+    z-index: 30 !important;
     color: var(--color-accent-light) !important;
     font-size: 2.5rem !important;
 }
@@ -59,12 +224,14 @@
     color: var(--color-accent-light) !important;
     border: 2px solid var(--color-accent-light) !important;
     font-weight: bold !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
 }
 
 .shuffle-button:hover {
     background-color: rgba(216, 151, 60, 0.15) !important;
     border-color: var(--color-accent-warm) !important;
     color: var(--color-accent-warm) !important;
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.24);
 }
 
 /* ==================== Dialog Backdrop ==================== */
@@ -99,4 +266,136 @@
 
 .MuiTypography-root {
     font-family: 'Augustus', serif;
+}
+
+.empty-card-hint {
+    font-size: 1.15rem;
+    color: var(--color-accent-light);
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    background-color: rgba(39, 62, 71, 0.35);
+    border: 1px solid rgba(216, 201, 155, 0.35);
+}
+
+@keyframes ambient-shift {
+    0% {
+        transform: translateY(0px) scale(1);
+        filter: saturate(95%);
+    }
+    100% {
+        transform: translateY(-10px) scale(1.03);
+        filter: saturate(108%);
+    }
+}
+
+@keyframes round-burst {
+    0% {
+        transform: scale(0.72);
+        filter: blur(10px);
+        opacity: 0;
+    }
+    35% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.1);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+@keyframes round-sweep {
+    0% {
+        transform: translateX(-36%) rotate(0deg);
+        opacity: 0;
+    }
+    25% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateX(32%) rotate(4deg);
+        opacity: 0;
+    }
+}
+
+@keyframes round-drift {
+    0% {
+        transform: translate3d(-1.2%, -0.8%, 0) scale(1);
+    }
+    100% {
+        transform: translate3d(1.2%, 0.8%, 0) scale(1.05);
+    }
+}
+
+@keyframes round-streaks {
+    0% {
+        background-position: -20% 50%, 120% 50%;
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        background-position: 120% 50%, -20% 50%;
+        opacity: 0;
+    }
+}
+
+@keyframes round-border-glow {
+    0% {
+        opacity: 0;
+        transform: scaleX(0.92);
+    }
+    100% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+@media (max-width: 900px) {
+    .game-deck-area {
+        position: relative;
+        top: unset;
+        left: unset;
+        width: fit-content;
+        margin-bottom: 1.25rem;
+    }
+
+    .game-card-area {
+        min-height: calc(100vh - 220px);
+        align-items: center;
+        padding-top: 0;
+    }
+
+    .game-header-center {
+        top: 0.6rem;
+    }
+
+    .exit-button {
+        top: 0.9rem !important;
+        right: 0.9rem !important;
+    }
+
+    .round-transition-core {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .round-transition-label {
+        font-size: clamp(3rem, 15vw, 6rem);
+    }
+}
+
+@keyframes round-ring {
+    0% {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+    40% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.85;
+        transform: scale(1);
+    }
 }

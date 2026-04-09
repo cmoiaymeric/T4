@@ -5,6 +5,8 @@ import { AnimatePresence } from 'motion/react'
 import './index.css'
 import App from './App.tsx'
 import Game from './routes/game.tsx'
+import DifficultySelection from './routes/difficulty_selection.tsx'
+import CharacterSelection from './routes/character_selection.tsx'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -13,6 +15,8 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait" initial={false}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<App />} />
+        <Route path="/difficulty" element={<DifficultySelection />} />
+        <Route path="/character" element={<CharacterSelection />} />
         <Route path="/game" element={<Game />} />
       </Routes>
     </AnimatePresence>

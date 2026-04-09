@@ -146,6 +146,7 @@
     color: var(--color-accent-light) !important;
     border-color: var(--color-accent-light) !important;
     border: 3px solid var(--color-accent-light) !important;
+    border-radius: 25px !important;
     font-size: 1.5rem !important;
     padding: 1rem 3rem !important;
     background-color: var(--color-primary) !important;

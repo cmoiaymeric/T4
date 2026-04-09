@@ -1,3 +1,5 @@
+@import "tailwindcss" important;
+
 @font-face {
     font-family: 'Augustus';
     src: url('/src/assets/fonts/AUGUSTUS.TTF') format('truetype');
@@ -24,6 +26,7 @@ body {
     background-color: var(--color-secondary);
     color: var(--color-secondary);
     line-height: 1.6;
+    overflow: hidden;
 }
 
 html,

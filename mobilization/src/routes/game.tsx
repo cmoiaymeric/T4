@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import {Board_Easy, Board_Hard } from '@/components/Board';
 
 function Game() {
     const { drawnCard, drawCard, resetDeck, remainingCards } = useDeck();
@@ -53,6 +54,10 @@ function Game() {
 
             <div className="game-card-area">
                 {drawnCard && <GameCard card={drawnCard} />}
+            </div>
+
+            <div className="game-board-area">
+                <Board_Easy></Board_Easy>
             </div>
         </div>
     )

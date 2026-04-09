@@ -6,6 +6,7 @@ interface UseDeckReturn {
     deck: CardData[];
     drawnCard: CardData | null;
     drawCard: () => CardData | null;
+    clearDrawnCard: () => void;
     resetDeck: () => void;
     remainingCards: number;
 }
@@ -38,6 +39,49 @@ export function useDeck(): UseDeckReturn {
         setDrawnCard(null);
     }, []);
 
+    const clearDrawnCard = useCallback(() => {
+        setDrawnCard(null);
+    }, []);
+
+    return {
+        deck,
+        drawnCard,
+        drawCard,
+        clearDrawnCard,
+        resetDeck,
+        remainingCards: deck.length,
+    };
+}
+
+export default useDeck;
+
+interface UseDeckFromCardsReturn {
+    deck: CardData[];
+    drawnCard: CardData | null;
+    drawCard: () => CardData | null;
+    resetDeck: () => void;
+    remainingCards: number;
+}
+
+export function useDeckFromCards(sourceCards: CardData[]): UseDeckFromCardsReturn {
+    const [deck, setDeck] = useState<CardData[]>(() => shuffleArray(sourceCards));
+    const [drawnCard, setDrawnCard] = useState<CardData | null>(null);
+
+    const drawCard = useCallback(() => {
+        if (deck.length === 0) {
+            return null;
+        }
+        const [card, ...remainingDeck] = deck;
+        setDeck(remainingDeck);
+        setDrawnCard(card);
+        return card;
+    }, [deck]);
+
+    const resetDeck = useCallback(() => {
+        setDeck(shuffleArray(sourceCards));
+        setDrawnCard(null);
+    }, [sourceCards]);
+
     return {
         deck,
         drawnCard,
@@ -46,5 +90,3 @@ export function useDeck(): UseDeckReturn {
         remainingCards: deck.length,
     };
 }
-
-export default useDeck;

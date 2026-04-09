@@ -5,8 +5,14 @@ interface BoardProps {
   texts: string[]
 }
 
-const easyTexts = ["1", "2", "3"];
-const hardTexts = ["4", "5", "6"];
+const CASE_LABELS = ['Partiel', 'Loyer', 'Préfecture', 'Hasard'];
+
+function buildCaseLabels(totalCases: number, offset: number): string[] {
+  return Array.from({ length: totalCases }).map((_, index) => CASE_LABELS[(index + offset) % CASE_LABELS.length]);
+}
+
+const easyTexts = buildCaseLabels(12, 0);
+const hardTexts = buildCaseLabels(12, 2);
 
 export type Difficulty = 'easy' | 'hard'
 
@@ -28,8 +34,8 @@ export function Board({ nb_cases, texts }: BoardProps) {
 export function Board_Easy() {
   return (
     <div className='flex flex-row flex-wrap gap-2'>
-      {Array.from({ length: 12 }).map((_, index) => (
-        <Case key={index} text={easyTexts[index % easyTexts.length]} />
+      {Array.from({ length: easyTexts.length }).map((_, index) => (
+        <Case key={index} text={easyTexts[index]} />
       ))}
     </div>
   );
@@ -38,8 +44,8 @@ export function Board_Easy() {
 export function Board_Hard() {
   return (
     <div className='flex flex-row flex-wrap gap-2'>
-      {Array.from({ length: 12 }).map((_, index) => (
-        <Case key={index} text={hardTexts[index % hardTexts.length]} />
+      {Array.from({ length: hardTexts.length }).map((_, index) => (
+        <Case key={index} text={hardTexts[index]} />
       ))}
     </div>
   );

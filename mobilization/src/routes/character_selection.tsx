@@ -32,9 +32,18 @@ type CharacterNamePool = {
     nationalities: Nationality[];
 };
 
+const FORCED_NATIONALITIES_BY_NAME: Record<string, Nationality> = {
+    ofmaroki: { name: 'Marocain', flag: '🇲🇦' },
+    algerien: { name: 'Algerien', flag: '🇩🇿' },
+    momo: { name: 'Turc', flag: '🇹🇷' },
+    kadir: { name: 'Turc', flag: '🇹🇷' },
+    djason: { name: 'Camerounais', flag: '🇨🇲' },
+    raphhus: { name: 'Francais', flag: '🇫🇷' },
+};
+
 const NAME_POOLS: Record<CharacterTemplate['profile'], CharacterNamePool> = {
     'european-male': {
-        firstNames: ['Lucas', 'Noah', 'Hugo', 'Matteo', 'Theo', 'Luca'],
+        firstNames: ['Lucas', 'Noah', 'Hugo', 'Matteo', 'Theo', 'Luca', 'Raphhus'],
         lastNames: ['Moreau', 'Dubois', 'Martin', 'Rossi', 'Garcia', 'Schneider'],
         nationalities: [
             { name: 'French', flag: '🇫🇷' },
@@ -58,7 +67,7 @@ const NAME_POOLS: Record<CharacterTemplate['profile'], CharacterNamePool> = {
         ],
     },
     'afro-male': {
-        firstNames: ['Noah', 'Amadou', 'Malik', 'Khalil', 'Idris', 'Yanis'],
+        firstNames: ['Noah', 'Amadou', 'Malik', 'Khalil', 'Idris', 'Yanis', 'Ofmaroki', 'Algerien', 'Djason'],
         lastNames: ['Diallo', 'Traore', 'Ndiaye', 'Mensah', 'Sow', 'Okoro'],
         nationalities: [
             { name: 'Brazilian', flag: '🇧🇷' },
@@ -82,7 +91,7 @@ const NAME_POOLS: Record<CharacterTemplate['profile'], CharacterNamePool> = {
         ],
     },
     'asian-male': {
-        firstNames: ['Wei', 'Hiro', 'Minh', 'Sung', 'Takeshi', 'Jin'],
+        firstNames: ['Wei', 'Hiro', 'Minh', 'Sung', 'Takeshi', 'Jin', 'Momo', 'Kadir'],
         lastNames: ['Chen', 'Yamamoto', 'Nguyen', 'Park', 'Tanaka', 'Kumar'],
         nationalities: [
             { name: 'Chinese', flag: '🇨🇳' },
@@ -123,7 +132,8 @@ function pickRandomCharacter(): Character {
 
     const firstName = pickRandomItem(pool.firstNames);
     const lastName = pickRandomItem(pool.lastNames);
-    const nationality = pickRandomItem(pool.nationalities);
+    const forcedNationality = FORCED_NATIONALITIES_BY_NAME[firstName.toLowerCase()];
+    const nationality = forcedNationality ?? pickRandomItem(pool.nationalities);
 
     return {
         id: template.id,

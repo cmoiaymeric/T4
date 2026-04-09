@@ -78,6 +78,22 @@ function Game() {
     const [playerPosition, setPlayerPosition] = useState(0);
     const [playedValidCount, setPlayedValidCount] = useState(0);
     const [cardsPlayedThisTurn, setCardsPlayedThisTurn] = useState(0);
+    const [isDeadlock, setIsDeadlock] = useState(false);
+    const [deadlockType, setDeadlockType] = useState<'no-valid-cards' | 'no-cards-left' | 'limit-reached' | null>(null);
+    const [showHelpDialog, setShowHelpDialog] = useState(false);
+    const [currentEventCard, setCurrentEventCard] = useState<CardData | null>(null);
+    const [showEventChoices, setShowEventChoices] = useState(false);
+    const [playerMoney, setPlayerMoney] = useState(100);
+    const [eventPlayedThisTurn, setEventPlayedThisTurn] = useState(false);
+    const [gameWon, setGameWon] = useState(false);
+    const [gameLost, setGameLost] = useState(false);
+    const [gameStats, setGameStats] = useState({
+        totalTurns: 0,
+        finalMentalHealth: 100,
+        finalMoney: 100,
+        cardsPlayed: 0,
+        eventsResolved: 0
+    });
     const navigate = useNavigate();
     const location = useLocation();
     const selectedCharacter = getInitialCharacter(location.state);
@@ -96,6 +112,115 @@ function Game() {
         : currentRequirement?.requiredType === 'work'
             ? 'Travailler'
             : 'Aucune';
+
+    // Fonction de détection de deadlock
+    const checkDeadlock = () => {
+        if (showRoundTransition) return;
+
+        let newDeadlockType: typeof deadlockType = null;
+        
+        // Vérifier si le joueur a atteint la limite de cartes mais n'a pas satisfait les exigences
+        if (cardsPlayedThisTurn >= 3 && !requirementMet && currentRequirement?.requiredType) {
+            newDeadlockType = 'limit-reached';
+        }
+        // Vérifier si le joueur n'a aucune carte valide dans son inventaire
+        else if (currentRequirement?.requiredType && workStudyInventory.length > 0) {
+            const hasValidCard = workStudyInventory.some(card => card.actionType === currentRequirement.requiredType);
+            if (!hasValidCard) {
+                newDeadlockType = 'no-valid-cards';
+            }
+        }
+        // Vérifier si le joueur n'a plus de cartes disponibles
+        else if (workStudyInventory.length === 0 && remainingWorkStudyCards === 0 && currentRequirement?.requiredType) {
+            newDeadlockType = 'no-cards-left';
+        }
+
+        setIsDeadlock(newDeadlockType !== null);
+        setDeadlockType(newDeadlockType);
+    };
+
+    // Fonction de résolution de deadlock
+    const resolveDeadlock = () => {
+        if (!currentRequirement?.requiredType) return;
+
+        // Créer une carte de secours automatiquement
+        const rescueCard: CardData = {
+            id: `rescue-${Date.now()}`,
+            name: `Carte de secours (${currentRequirement.requiredType === 'study' ? 'Étudier' : 'Travailler'})`,
+            description: 'Carte générée automatiquement pour résoudre le deadlock',
+            actionType: currentRequirement.requiredType as 'study' | 'work',
+            mentalBoost: 0,
+            image: '',
+        };
+
+        // Ajouter la carte de secours à l'inventaire
+        if (workStudyInventory.length < INVENTORY_LIMIT) {
+            setWorkStudyInventory((previous) => [rescueCard, ...previous]);
+            setShowHelpDialog(false);
+        }
+    };
+
+    // Fonctions pour gérer les événements interactifs
+    const handleDrawEventCard = () => {
+        if (showRoundTransition || eventPlayedThisTurn) return;
+        const card = drawCard();
+        if (!card) return;
+        
+        if (card.choices && card.choices.length > 0) {
+            setCurrentEventCard(card);
+            setShowEventChoices(true);
+        } else {
+            // Appliquer les effets automatiques pour les anciens événements
+            applyCardEffect(card);
+        }
+        
+        // Marquer qu'un événement a été joué ce tour
+        setEventPlayedThisTurn(true);
+    };
+
+    const applyCardEffect = (card: CardData, choiceIndex?: number) => {
+        let mentalHealthChange = 0;
+        let moneyChange = 0;
+
+        if (choiceIndex !== undefined && card.choices) {
+            const choice = card.choices[choiceIndex];
+            mentalHealthChange = choice.effect.mentalHealth ?? 0;
+            moneyChange = choice.effect.money ?? 0;
+        } else {
+            // Effets par défaut pour les anciens événements
+            switch (card.id) {
+                case 'maladie':
+                    mentalHealthChange = -2;
+                    break;
+                case 'controle-visa':
+                    mentalHealthChange = -1;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        const newMentalHealth = Math.max(0, Math.min(selectedCharacter.maxMentalHealth, mentalHealth + mentalHealthChange));
+        setMentalHealth(newMentalHealth);
+        setPlayerMoney((prev) => Math.max(0, prev + moneyChange));
+        setCurrentEventCard(null);
+        setShowEventChoices(false);
+
+        // Vérifier la condition de défaite
+        if (newMentalHealth === 0 && !gameWon && !gameLost) {
+            handleDefeat();
+        }
+    };
+
+    const handleEventChoice = (choiceIndex: number) => {
+        if (currentEventCard) {
+            applyCardEffect(currentEventCard, choiceIndex);
+        }
+    };
+
+    useEffect(() => {
+        checkDeadlock();
+    }, [cardsPlayedThisTurn, workStudyInventory, remainingWorkStudyCards, currentRequirement, requirementMet, showRoundTransition]);
 
     useEffect(() => {
         if (!showRoundTransition) {
@@ -156,15 +281,100 @@ function Game() {
         if (showRoundTransition) return;
 
         if (requirementMet && playerPosition < boardLabels.length - 1) {
-            setPlayerPosition((previous) => Math.min(previous + 1, boardLabels.length - 1));
+            const newPosition = Math.min(playerPosition + 1, boardLabels.length - 1);
+            setPlayerPosition(newPosition);
+            
+            // Vérifier la condition de victoire
+            if (newPosition >= boardLabels.length - 1) {
+                handleVictory();
+            }
         }
 
         setPlayedValidCount(0);
         setCardsPlayedThisTurn(0);
+        setEventPlayedThisTurn(false); // Réinitialiser l'état d'événement joué
         setRoundIndex((previous) => previous + 1);
         setRoundTransitionKey((previous) => previous + 1);
         setShowRoundTransition(true);
     };
+
+    const handleVictory = () => {
+        setGameWon(true);
+        setGameStats({
+            totalTurns: roundIndex + 1,
+            finalMentalHealth: mentalHealth,
+            finalMoney: playerMoney,
+            cardsPlayed: cardsPlayedThisTurn + (roundIndex * 3), // Approximation
+            eventsResolved: 0 // À implémenter avec un compteur
+        });
+    };
+
+    const handleDefeat = () => {
+        setGameLost(true);
+        setGameStats({
+            totalTurns: roundIndex + 1,
+            finalMentalHealth: 0,
+            finalMoney: playerMoney,
+            cardsPlayed: cardsPlayedThisTurn + (roundIndex * 3), // Approximation
+            eventsResolved: 0 // À implémenter avec un compteur
+        });
+    };
+
+    const handleRestart = () => {
+        navigate('/');
+    };
+
+    const calculateVictoryMessage = () => {
+        const mentalHealthPercentage = (mentalHealth / selectedCharacter.maxMentalHealth) * 100;
+        const efficiency = ((boardLabels.length - 1) / (roundIndex + 1)) * 100;
+        
+        if (mentalHealthPercentage >= 80 && efficiency >= 80) {
+            return {
+                title: "Victoire Éclatante !",
+                message: "Vous avez terminé vos études avec brio ! Votre parcours est un modèle de réussite.",
+                grade: "A+"
+            };
+        } else if (mentalHealthPercentage >= 60 && efficiency >= 60) {
+            return {
+                title: "Diplôme Obtenu !",
+                message: "Félicitations ! Vous avez réussi votre parcours malgré les difficultés.",
+                grade: "B"
+            };
+        } else {
+            return {
+                title: "Diplôme Obtenu... de justesse !",
+                message: "Vous avez réussi, mais au prix de votre santé mentale. Prenez soin de vous !",
+                grade: "C"
+            };
+        }
+    };
+
+    const calculateDefeatMessage = () => {
+        const progressPercentage = (playerPosition / (boardLabels.length - 1)) * 100;
+        
+        if (progressPercentage >= 50) {
+            return {
+                title: "Burn-out... Épuisement total",
+                message: "Vous étiez si proche du but, mais la pression était trop forte. Votre santé mentale a cédé.",
+                reason: "Proche de l'objectif mais épuisé"
+            };
+        } else if (progressPercentage >= 25) {
+            return {
+                title: "Abandon... Surmenage",
+                message: "Les difficultés administratives et l'isolement ont eu raison de votre motivation.",
+                reason: "Difficultés accumulées"
+            };
+        } else {
+            return {
+                title: "Défaite... Début difficile",
+                message: "Le parcours était trop ardu dès le début. Les obstacles administratifs vous ont submergé.",
+                reason: "Début trop difficile"
+            };
+        }
+    };
+
+    const victoryData = gameWon ? calculateVictoryMessage() : null;
+    const defeatData = gameLost ? calculateDefeatMessage() : null;
 
     return (
         <motion.main
@@ -239,9 +449,14 @@ function Game() {
                             <DeckDisplay
                                 label="Evenements"
                                 remainingCards={remainingCards}
-                                onDraw={handleDrawCard}
-                                isDisabled={remainingCards === 0 || showRoundTransition}
+                                onDraw={handleDrawEventCard}
+                                isDisabled={remainingCards === 0 || showRoundTransition || eventPlayedThisTurn}
                             />
+                            {eventPlayedThisTurn && (
+                                <div className="event-played-indicator">
+                                    <span className="event-played-text">Événement joué</span>
+                                </div>
+                            )}
                         </div>
                         <div className="deck-slot">
                             <DeckDisplay
@@ -266,6 +481,35 @@ function Game() {
                         <p className={`inventory-rule ${requirementMet ? 'highlight' : ''}`}>
                             Prochaine case: {currentRequirement?.label ?? 'Aucune'}
                         </p>
+                        
+                        {isDeadlock && (
+                            <div className="deadlock-warning">
+                                <p className="deadlock-title">Deadlock détecté !</p>
+                                <p className="deadlock-message">
+                                    {deadlockType === 'limit-reached' && 'Limite de cartes atteinte. Passez le tour pour continuer.'}
+                                    {deadlockType === 'no-valid-cards' && 'Aucune carte valide disponible. Piochez ou passez le tour.'}
+                                    {deadlockType === 'no-cards-left' && 'Plus de cartes disponibles. Passez le tour.'}
+                                </p>
+                                {deadlockType === 'no-valid-cards' && remainingWorkStudyCards > 0 && (
+                                    <button 
+                                        className="help-button"
+                                        onClick={handleDrawWorkStudyCard}
+                                        disabled={workStudyInventory.length >= INVENTORY_LIMIT}
+                                    >
+                                        Piocher une carte
+                                    </button>
+                                )}
+                                {(deadlockType === 'no-valid-cards' || deadlockType === 'no-cards-left') && (
+                                    <button 
+                                        className="help-button"
+                                        onClick={resolveDeadlock}
+                                        style={{ marginTop: '0.5rem' }}
+                                    >
+                                        Obtenir une carte de secours
+                                    </button>
+                                )}
+                            </div>
+                        )}
                         <div className="inventory-list">
                             <AnimatePresence initial={false}>
                                 {workStudyInventory.map((card, index) => (
@@ -343,6 +587,7 @@ function Game() {
                         <h2>{selectedCharacter.firstName} {selectedCharacter.lastName}</h2>
                         <p>{selectedCharacter.flag} {selectedCharacter.nationality}</p>
                         <p>Sante mentale: {mentalHealth}/{selectedCharacter.maxMentalHealth}</p>
+                        <p>Argent: {playerMoney}€</p>
                         <p>Position: {boardLabels[playerPosition]}</p>
                         {playerPosition >= boardLabels.length - 1 && (
                             <p>Objectif atteint: Diplome obtenu.</p>
@@ -354,6 +599,201 @@ function Game() {
                     </div>
                 </div>
             </div>
+        {/* Interface pour les choix interactifs */}
+            <AnimatePresence>
+                {showEventChoices && currentEventCard && (
+                    <motion.div
+                        className="event-choices-overlay"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: prefersReducedMotion ? 0.01 : 0.3 }}
+                    >
+                        <motion.div
+                            className="event-choices-dialog"
+                            initial={{ scale: prefersReducedMotion ? 1 : 0.8, y: prefersReducedMotion ? 0 : 20 }}
+                            animate={{ scale: 1, y: 0 }}
+                            exit={{ scale: prefersReducedMotion ? 1 : 0.8, y: prefersReducedMotion ? 0 : 20 }}
+                            transition={{ duration: prefersReducedMotion ? 0.01 : 0.3, ease: 'easeOut' }}
+                        >
+                            <h3 className="event-choices-title">{currentEventCard.name}</h3>
+                            <p className="event-choices-description">{currentEventCard.description}</p>
+                            <div className="event-choices-list">
+                                {currentEventCard.choices?.map((choice, index) => (
+                                    <motion.button
+                                        key={index}
+                                        className="event-choice-button"
+                                        onClick={() => handleEventChoice(index)}
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        <span className="choice-text">{choice.text}</span>
+                                        <div className="choice-effects">
+                                            {choice.effect.mentalHealth !== undefined && (
+                                                <span className="effect mental">
+                                                    {choice.effect.mentalHealth > 0 ? '+' : ''}{choice.effect.mentalHealth} 🧠
+                                                </span>
+                                            )}
+                                            {choice.effect.money !== undefined && (
+                                                <span className="effect money">
+                                                    {choice.effect.money > 0 ? '+' : ''}{choice.effect.money} €
+                                                </span>
+                                            )}
+                                        </div>
+                                    </motion.button>
+                                ))}
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Écran de victoire */}
+            <AnimatePresence>
+                {gameWon && victoryData && (
+                    <motion.div
+                        className="victory-overlay"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: prefersReducedMotion ? 0.01 : 0.5 }}
+                    >
+                        <motion.div
+                            className="victory-dialog"
+                            initial={{ scale: prefersReducedMotion ? 1 : 0.5, rotate: prefersReducedMotion ? 0 : -10 }}
+                            animate={{ scale: 1, rotate: 0 }}
+                            exit={{ scale: prefersReducedMotion ? 1 : 0.8, rotate: prefersReducedMotion ? 0 : 5 }}
+                            transition={{ duration: prefersReducedMotion ? 0.01 : 0.4, ease: 'easeOut' }}
+                        >
+                            <div className="victory-header">
+                                <h1 className="victory-title">{victoryData.title}</h1>
+                                <div className="victory-grade">{victoryData.grade}</div>
+                            </div>
+                            
+                            <div className="victory-content">
+                                <p className="victory-message">{victoryData.message}</p>
+                                
+                                <div className="victory-stats">
+                                    <h2>Statistiques de fin de partie</h2>
+                                    <div className="stats-grid">
+                                        <div className="stat-item">
+                                            <span className="stat-label">Tours joués</span>
+                                            <span className="stat-value">{gameStats.totalTurns}</span>
+                                        </div>
+                                        <div className="stat-item">
+                                            <span className="stat-label">Santé mentale finale</span>
+                                            <span className="stat-value">{gameStats.finalMentalHealth}/{selectedCharacter.maxMentalHealth}</span>
+                                        </div>
+                                        <div className="stat-item">
+                                            <span className="stat-label">Argent final</span>
+                                            <span className="stat-value">{gameStats.finalMoney}€</span>
+                                        </div>
+                                        <div className="stat-item">
+                                            <span className="stat-label">Efficacité</span>
+                                            <span className="stat-value">{Math.round(((boardLabels.length - 1) / gameStats.totalTurns) * 100)}%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div className="victory-actions">
+                                <motion.button
+                                    className="victory-button primary"
+                                    onClick={handleRestart}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    Retour au menu
+                                </motion.button>
+                                <motion.button
+                                    className="victory-button secondary"
+                                    onClick={() => window.location.reload()}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    Rejouer
+                                </motion.button>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Écran de défaite */}
+            <AnimatePresence>
+                {gameLost && defeatData && (
+                    <motion.div
+                        className="defeat-overlay"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: prefersReducedMotion ? 0.01 : 0.5 }}
+                    >
+                        <motion.div
+                            className="defeat-dialog"
+                            initial={{ scale: prefersReducedMotion ? 1 : 0.5, rotate: prefersReducedMotion ? 0 : 10 }}
+                            animate={{ scale: 1, rotate: 0 }}
+                            exit={{ scale: prefersReducedMotion ? 1 : 0.8, rotate: prefersReducedMotion ? 0 : -5 }}
+                            transition={{ duration: prefersReducedMotion ? 0.01 : 0.4, ease: 'easeOut' }}
+                        >
+                            <div className="defeat-header">
+                                <h1 className="defeat-title">{defeatData.title}</h1>
+                                <div className="defeat-reason">{defeatData.reason}</div>
+                            </div>
+                            
+                            <div className="defeat-content">
+                                <p className="defeat-message">{defeatData.message}</p>
+                                
+                                <div className="defeat-stats">
+                                    <h2>Bilan de votre parcours</h2>
+                                    <div className="stats-grid">
+                                        <div className="stat-item">
+                                            <span className="stat-label">Tours joués</span>
+                                            <span className="stat-value">{gameStats.totalTurns}</span>
+                                        </div>
+                                        <div className="stat-item">
+                                            <span className="stat-label">Progression</span>
+                                            <span className="stat-value">{Math.round((playerPosition / (boardLabels.length - 1)) * 100)}%</span>
+                                        </div>
+                                        <div className="stat-item">
+                                            <span className="stat-label">Argent final</span>
+                                            <span className="stat-value">{gameStats.finalMoney}°</span>
+                                        </div>
+                                        <div className="stat-item">
+                                            <span className="stat-label">Position finale</span>
+                                            <span className="stat-value">{boardLabels[playerPosition]}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div className="defeat-actions">
+                                <motion.button
+                                    className="defeat-button primary"
+                                    onClick={handleRestart}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    Retour au menu
+                                </motion.button>
+                                <motion.button
+                                    className="defeat-button secondary"
+                                    onClick={() => window.location.reload()}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    Réessayer
+                                </motion.button>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.main>
     )
 }

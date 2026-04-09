@@ -32,26 +32,68 @@ export const CARDS: CardData[] = [
     {
         id: 'retard-bourse',
         name: 'Retard de bourse',
-        description: 'Votre bourse n\'est toujours pas arrivée.',
+        description: 'Votre bourse n\'est toujours pas arrivée. Vous devez trouver une solution rapide :',
         image: retardBourseImg,
+        choices: [
+            { text: 'Emprunter à la famille (+50€, -1 santé mentale)', effect: { mentalHealth: -1, money: 50 } },
+            { text: 'Travail illégal (+30€, -2 santé mentale)', effect: { mentalHealth: -2, money: 30 } },
+            { text: 'Attendre (0€, -3 santé mentale)', effect: { mentalHealth: -3, money: 0 } }
+        ]
     },
     {
         id: 'soiree-tourne-mal',
         name: 'Soirée tourne mal',
-        description: 'JSP',
+        description: 'Vous vous réveillez avec une gueule de bois. Choisissez votre action :',
         image: soireeImg,
+        choices: [
+            { text: 'Prendre un café (-1 santé mentale)', effect: { mentalHealth: -1, money: 0 } },
+            { text: 'Rester chez soi (-2 santé mentale)', effect: { mentalHealth: -2, money: 0 } },
+            { text: 'Appeler un ami (coûte 10€)', effect: { mentalHealth: 1, money: -10 } }
+        ]
     },
     {
         id: 'absence',
         name: 'Absence injustifiée',
-        description: 'Vous avez des absences non justifiées, justifiez les si vous ne voulez pas perdre votre bourse',
+        description: 'Vous avez des absences non justifiées. Comment gérez-vous cette situation ?',
         image: absenceImg,
+        choices: [
+            { text: 'Faux certificat médical (+20€, risque si découvert)', effect: { mentalHealth: 0, money: 20 } },
+            { text: 'Parler à l\'administration (-1 santé mentale)', effect: { mentalHealth: -1, money: 0 } },
+            { text: 'Accepter la sanction (-50€, -2 santé mentale)', effect: { mentalHealth: -2, money: -50 } }
+        ]
     },
     {
         id: 'deces',
         name: 'Avis de décès',
-        description: 'L\'un de vos proches est mort. Votre moral baisse drastiquement',
+        description: 'L\'un de vos proches est mort. Comment gérez-vous ce deuil ?',
         image: decesImg,
+        choices: [
+            { text: 'Retourner chez votre famille (-3 tours, -2 santé mentale)', effect: { mentalHealth: -2, money: 0 } },
+            { text: 'Continuer les études (-2 santé mentale)', effect: { mentalHealth: -2, money: 0 } },
+            { text: 'Thérapie (-100€, +1 santé mentale)', effect: { mentalHealth: 1, money: -100 } }
+        ]
+    },
+    {
+        id: 'bourse-obtenue',
+        name: 'Bourse obtenue !',
+        description: 'Félicitations ! Votre bourse est arrivée. Comment la gérez-vous ?',
+        image: heroImg,
+        choices: [
+            { text: 'Célébrer (+2 santé mentale, -30€)', effect: { mentalHealth: 2, money: -30 } },
+            { text: 'Économiser (0€, 0 santé mentale)', effect: { mentalHealth: 0, money: 0 } },
+            { text: 'Aider la famille (-50€, +1 santé mentale)', effect: { mentalHealth: 1, money: -50 } }
+        ]
+    },
+    {
+        id: 'opportunite-emploi',
+        name: 'Opportunité d\'emploi',
+        description: 'Une offre d\'emploi à temps partiel se présente. Intéressant !',
+        image: heroImg,
+        choices: [
+            { text: 'Accepter (+100€, -1 santé mentale)', effect: { mentalHealth: -1, money: 100 } },
+            { text: 'Refuser (0€, 0 santé mentale)', effect: { mentalHealth: 0, money: 0 } },
+            { text: 'Négocier (+80€, 0 santé mentale)', effect: { mentalHealth: 0, money: 80 } }
+        ]
     },
 ];
 

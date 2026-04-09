@@ -43,7 +43,7 @@ const CHARACTER_CATALOG: CharacterProfile[] = [
         flag: '🇹🇷',
         image: momoPng,
         origin: 'international',
-        mentalHealth: 6,
+        mentalHealth: 1,
         maxMentalHealth: 10,
     },
     {

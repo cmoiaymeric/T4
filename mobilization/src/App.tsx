@@ -40,15 +40,15 @@ function App() {
             exit="exit"
         >
             <motion.div className='menu-title-area' variants={blockVariants}>
-                <WordRotate 
-                    className='flex flex-col items-center justify-center text-8xl font-bold' 
-                    words={["Mobilization", "Civilization 8"]} 
+                <WordRotate
+                    className='flex flex-col items-center justify-center text-8xl font-bold'
+                    words={["Mobilization", "Civilization 8"]}
                 />
             </motion.div>
 
             <motion.div className='menu-buttons-area' variants={blockVariants}>
                 <motion.div whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }} whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}>
-                    <NavLink to="/game" className="nav-link">
+                    <NavLink to="/character" className="nav-link">
                         <Button className='btn-jouer btn-large'>JOUER</Button>
                     </NavLink>
                 </motion.div>

@@ -2,12 +2,13 @@ import './DeckDisplay.css';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 
 interface DeckDisplayProps {
+    label?: string;
     remainingCards: number;
     onDraw: () => void;
     isDisabled: boolean;
 }
 
-export default function DeckDisplay({ remainingCards, onDraw, isDisabled }: DeckDisplayProps) {
+export default function DeckDisplay({ label, remainingCards, onDraw, isDisabled }: DeckDisplayProps) {
     const prefersReducedMotion = useReducedMotion();
 
     return (
@@ -21,6 +22,7 @@ export default function DeckDisplay({ remainingCards, onDraw, isDisabled }: Deck
             whileTap={!isDisabled && !prefersReducedMotion ? { scale: 0.97, y: 1 } : undefined}
             transition={{ duration: prefersReducedMotion ? 0.01 : 0.18, ease: 'easeOut' }}
         >
+            {label && <span className="deck-label">{label}</span>}
             <div className="card-layer layer-1"></div>
             <div className="card-layer layer-2"></div>
             <div className="card-layer layer-3"></div>

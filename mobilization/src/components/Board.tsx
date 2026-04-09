@@ -1,51 +1,24 @@
 import { Case } from './Case'
 
 interface BoardProps {
-  nb_cases: number
-  texts: string[]
+  texts: string[];
+  currentPosition: number;
 }
 
-const CASE_LABELS = ['Partiel', 'Loyer', 'Préfecture', 'Hasard'];
+const NATIVE_BOARD_LABELS = ['Rentrer', 'Partiel', 'Hasard', 'Loyer', 'Hasard', 'Partiel', 'Loyer', 'Diplome'];
+const MOBILITY_BOARD_LABELS = ['Rentrer', 'Partiel', 'Hasard', 'Prefecture', 'Loyer', 'Hasard', 'Partiel', 'Loyer', 'Prefecture', 'Hasard', 'Partiel', 'Diplome'];
 
-function buildCaseLabels(totalCases: number, offset: number): string[] {
-  return Array.from({ length: totalCases }).map((_, index) => CASE_LABELS[(index + offset) % CASE_LABELS.length]);
+export type PlayerMode = 'natif' | 'mobilite';
+
+export function getBoardLabels(mode: PlayerMode): string[] {
+  return mode === 'natif' ? NATIVE_BOARD_LABELS : MOBILITY_BOARD_LABELS;
 }
 
-const easyTexts = buildCaseLabels(12, 0);
-const hardTexts = buildCaseLabels(12, 2);
-
-export type Difficulty = 'easy' | 'hard'
-
-export const boardMap: Record<Difficulty, () => JSX.Element> = {
-  easy: () => <Board_Easy />,
-  hard: () => <Board_Hard />,
-}
-
-export function Board({ nb_cases, texts }: BoardProps) {
+export function Board({ texts, currentPosition }: BoardProps) {
   return (
-    <div className='flex flex-row flex-wrap gap-2'>
-      {Array.from({ length: nb_cases }).map((_, index) => (
-        <Case key={index} text={texts[index]} />
-      ))}
-    </div>
-  );
-}
-
-export function Board_Easy() {
-  return (
-    <div className='flex flex-row flex-wrap gap-2'>
-      {Array.from({ length: easyTexts.length }).map((_, index) => (
-        <Case key={index} text={easyTexts[index]} />
-      ))}
-    </div>
-  );
-}
-
-export function Board_Hard() {
-  return (
-    <div className='flex flex-row flex-wrap gap-2'>
-      {Array.from({ length: hardTexts.length }).map((_, index) => (
-        <Case key={index} text={hardTexts[index]} />
+    <div className='flex flex-row flex-wrap gap-2 max-w-[760px]'>
+      {texts.map((label, index) => (
+        <Case key={`${label}-${index}`} text={label} hasPawn={index === currentPosition} isCurrent={index === currentPosition} />
       ))}
     </div>
   );

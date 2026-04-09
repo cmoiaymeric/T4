@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { type Difficulty, } from '@/components/Board';
+import type { CharacterProfile } from '../types/character';
 import './difficulty_selection.css';
 
 type Mode = 'Natif' | 'Mobilité';
@@ -11,8 +11,18 @@ function DifficultySelection() {
 
   const handleStart = () => {
     if (!selectedMode) return;
-    const difficulty: Difficulty = selectedMode === 'Natif' ? 'easy' : 'hard';
-    navigate('/game', { state: { difficulty } });
+    const fallbackCharacter: CharacterProfile = {
+      id: selectedMode === 'Natif' ? 'fallback-natif' : 'fallback-mobilite',
+      firstName: 'Etudiant',
+      lastName: selectedMode,
+      nationality: selectedMode === 'Natif' ? 'Francais' : 'International',
+      flag: selectedMode === 'Natif' ? '🇫🇷' : '🌍',
+      image: '',
+      origin: selectedMode === 'Natif' ? 'france' : 'international',
+      mentalHealth: 7,
+      maxMentalHealth: 10,
+    };
+    navigate('/game', { state: { character: fallbackCharacter } });
   };
 
   return (

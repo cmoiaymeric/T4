@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import './character_selection.css';
+import type { CharacterProfile } from '../types/character';
 
 import algerienPng from '../assets/illustrations/algerien.png';
 import aemerikImg from '../assets/illustrations/aemerik.jpg';
@@ -11,17 +12,7 @@ import momoPng from '../assets/illustrations/momo.png';
 import ofmarokiPng from '../assets/illustrations/ofmaroki.png';
 import raphusPng from '../assets/illustrations/raphus.png';
 
-type Character = {
-    id: string;
-    firstName: string;
-    lastName: string;
-    nationality: string;
-    flag: string;
-    image: string;
-    trait?: string;
-};
-
-const CHARACTER_CATALOG: Character[] = [
+const CHARACTER_CATALOG: CharacterProfile[] = [
     {
         id: 'ofmaroki',
         firstName: 'Ofmaroki',
@@ -29,6 +20,9 @@ const CHARACTER_CATALOG: Character[] = [
         nationality: 'Marocain',
         flag: '🇲🇦',
         image: ofmarokiPng,
+        origin: 'international',
+        mentalHealth: 7,
+        maxMentalHealth: 10,
     },
     {
         id: 'algerien',
@@ -37,6 +31,9 @@ const CHARACTER_CATALOG: Character[] = [
         nationality: 'Algerien',
         flag: '🇩🇿',
         image: algerienPng,
+        origin: 'international',
+        mentalHealth: 7,
+        maxMentalHealth: 10,
     },
     {
         id: 'momo',
@@ -45,6 +42,9 @@ const CHARACTER_CATALOG: Character[] = [
         nationality: 'Turc',
         flag: '🇹🇷',
         image: momoPng,
+        origin: 'international',
+        mentalHealth: 6,
+        maxMentalHealth: 10,
     },
     {
         id: 'kadir',
@@ -53,6 +53,9 @@ const CHARACTER_CATALOG: Character[] = [
         nationality: 'Turc',
         flag: '🇹🇷',
         image: kadirPng,
+        origin: 'international',
+        mentalHealth: 6,
+        maxMentalHealth: 10,
     },
     {
         id: 'djason',
@@ -61,6 +64,9 @@ const CHARACTER_CATALOG: Character[] = [
         nationality: 'Camerounais',
         flag: '🇨🇲',
         image: djasonPng,
+        origin: 'international',
+        mentalHealth: 7,
+        maxMentalHealth: 10,
     },
     {
         id: 'raphus',
@@ -69,6 +75,9 @@ const CHARACTER_CATALOG: Character[] = [
         nationality: 'Francais',
         flag: '🇫🇷',
         image: raphusPng,
+        origin: 'france',
+        mentalHealth: 8,
+        maxMentalHealth: 10,
     },
     {
         id: 'aemerik',
@@ -77,6 +86,9 @@ const CHARACTER_CATALOG: Character[] = [
         nationality: 'Francais',
         flag: '🇫🇷',
         image: aemerikImg,
+        origin: 'france',
+        mentalHealth: 5,
+        maxMentalHealth: 10,
         trait: 'Hyper nul en maths',
     },
     {
@@ -86,6 +98,9 @@ const CHARACTER_CATALOG: Character[] = [
         nationality: 'Turc',
         flag: '🇹🇷',
         image: emrePng,
+        origin: 'international',
+        mentalHealth: 9,
+        maxMentalHealth: 10,
         trait: 'Fort en maths',
     },
 ];
@@ -95,11 +110,11 @@ function pickRandomItem<T>(items: T[]): T {
     return items[index];
 }
 
-function pickRandomCharacter(): Character {
+function pickRandomCharacter(): CharacterProfile {
     return pickRandomItem(CHARACTER_CATALOG);
 }
 
-function pickRandomCharacterWithDifferentImage(previousImage?: string): Character {
+function pickRandomCharacterWithDifferentImage(previousImage?: string): CharacterProfile {
     if (!previousImage) {
         return pickRandomCharacter();
     }
@@ -118,7 +133,7 @@ function pickRandomCharacterWithDifferentImage(previousImage?: string): Characte
 
 function CharacterSelection() {
     const navigate = useNavigate();
-    const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
+    const [selectedCharacter, setSelectedCharacter] = useState<CharacterProfile | null>(null);
 
     useEffect(() => {
         setSelectedCharacter(pickRandomCharacter());
@@ -130,7 +145,7 @@ function CharacterSelection() {
 
     const handleContinue = () => {
         if (!selectedCharacter) return;
-        navigate('/difficulty', { state: { character: selectedCharacter } });
+        navigate('/game', { state: { character: selectedCharacter } });
     };
 
     return (
@@ -155,6 +170,7 @@ function CharacterSelection() {
                         {selectedCharacter.trait && (
                             <p className="character-trait">{selectedCharacter.trait}</p>
                         )}
+                        <p className="character-trait">Sante mentale: {selectedCharacter.mentalHealth}/{selectedCharacter.maxMentalHealth}</p>
                     </article>
                 )}
 

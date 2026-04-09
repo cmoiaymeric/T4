@@ -1,4 +1,4 @@
-import type { CardData } from '../types/card';
+import type { ActionCardType, CardData } from '../types/card';
 
 // Import des illustrations depuis le dossier assets/illustrations
 import controleVisaImg from '../assets/illustrations/ContrroleVisa.jpeg';
@@ -61,12 +61,16 @@ function buildRepeatedCards(
     description: string,
     image: string,
     count: number,
+    actionType: ActionCardType,
+    mentalBoost?: number,
 ): CardData[] {
     return Array.from({ length: count }, (_, index) => ({
         id: `${prefix}-${index + 1}`,
         name,
         description,
         image,
+        actionType,
+        mentalBoost,
     }));
 }
 
@@ -76,7 +80,8 @@ export const WORK_STUDY_CARDS: CardData[] = [
         'Travailler',
         'Vous prenez un travail pour améliorer vos ressources et votre stabilité.',
         heroImg,
-        14,
+        12,
+        'work',
     ),
     ...buildRepeatedCards(
         'etudier',
@@ -84,6 +89,52 @@ export const WORK_STUDY_CARDS: CardData[] = [
         'Vous étudiez pour progresser et débloquer de nouvelles opportunités.',
         heroImg,
         14,
+        'study',
+    ),
+    ...buildRepeatedCards(
+        'sortie-bar',
+        'Sortie au bar',
+        'Vous prenez un moment social pour relâcher la pression.',
+        heroImg,
+        5,
+        'mental',
+        1,
+    ),
+    ...buildRepeatedCards(
+        'jeu-video',
+        'Jeu video',
+        'Une pause gaming qui recharge le moral.',
+        heroImg,
+        5,
+        'mental',
+        1,
+    ),
+    ...buildRepeatedCards(
+        'sport',
+        'Sport',
+        'Une seance sportive pour recuperer mentalement.',
+        heroImg,
+        5,
+        'mental',
+        1,
+    ),
+    ...buildRepeatedCards(
+        'chicha',
+        'Chicha',
+        'Vous soufflez un peu pour diminuer le stress.',
+        heroImg,
+        4,
+        'mental',
+        1,
+    ),
+    ...buildRepeatedCards(
+        'pause-clope',
+        'Pause clope',
+        'Une petite pause qui fait redescendre la pression.',
+        heroImg,
+        4,
+        'mental',
+        1,
     ),
 ];
 

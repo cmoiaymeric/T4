@@ -23,6 +23,20 @@
     animation: deck-float 2.9s ease-in-out infinite;
 }
 
+.deck-label {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    z-index: 5;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid rgba(216, 201, 155, 0.85);
+    background: rgba(39, 62, 71, 0.82);
+    color: #d8c99b;
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+}
+
 .card-layer {
     position: absolute;
     width: 140px;

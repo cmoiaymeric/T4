@@ -1,0 +1,111 @@
+:root {
+    --color-primary: #A4243B;
+    --color-accent-light: #D8C99B;
+    --color-accent-warm: #D8973C;
+    --color-accent-deep: #BD632F;
+    --color-secondary: #273E47;
+}
+
+.difficulty-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    background: linear-gradient(140deg, var(--color-secondary) 0%, var(--color-accent-deep) 48%, var(--color-primary) 100%);
+    font-family: 'Augustus', serif;
+}
+
+.difficulty-panel {
+    width: min(820px, 100%);
+    padding: 2.25rem;
+    border: 2px solid var(--color-accent-light);
+    border-radius: 16px;
+    background: rgba(39, 62, 71, 0.8);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    text-align: center;
+}
+
+.difficulty-title {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-accent-light);
+    letter-spacing: 0.04em;
+}
+
+.difficulty-subtitle {
+    margin: 0.5rem 0 1.75rem;
+    color: #f0e5c4;
+    font-size: 1rem;
+}
+
+.difficulty-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.difficulty-card {
+    width: 100%;
+    border: 2px solid var(--color-accent-light);
+    border-radius: 12px;
+    background: rgba(164, 36, 59, 0.25);
+    color: var(--color-accent-light);
+    padding: 1.2rem 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.difficulty-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-accent-warm);
+    background: rgba(216, 151, 60, 0.2);
+}
+
+.difficulty-card.selected {
+    border-color: var(--color-accent-warm);
+    background: rgba(216, 151, 60, 0.28);
+    box-shadow: 0 0 0 2px rgba(216, 151, 60, 0.3) inset;
+}
+
+.difficulty-name {
+    display: block;
+    font-size: 1.45rem;
+    margin-bottom: 0.5rem;
+}
+
+.difficulty-description {
+    display: block;
+    font-size: 0.95rem;
+    opacity: 0.95;
+}
+
+.difficulty-start-button {
+    border: 2px solid var(--color-accent-light);
+    border-radius: 10px;
+    background: var(--color-primary);
+    color: var(--color-accent-light);
+    padding: 0.8rem 2.1rem;
+    font-size: 1.1rem;
+    font-family: 'Augustus', serif;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.difficulty-start-button:hover:not(:disabled) {
+    background: var(--color-accent-warm);
+    border-color: var(--color-accent-light);
+    transform: translateY(-1px);
+}
+
+.difficulty-start-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 720px) {
+    .difficulty-options {
+        grid-template-columns: 1fr;
+    }
+}

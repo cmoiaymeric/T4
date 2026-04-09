@@ -26,6 +26,7 @@ body {
     background-color: var(--color-secondary);
     color: var(--color-secondary);
     line-height: 1.6;
+    overflow: hidden;
 }
 
 html,
@@ -33,4 +34,5 @@ body,
 #root {
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }

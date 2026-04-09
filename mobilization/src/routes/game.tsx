@@ -6,7 +6,7 @@ import { useDeck, useDeckFromCards } from '../hooks/useDeck';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { boardMap, type Difficulty } from '@/components/Board';
@@ -31,9 +31,11 @@ function Game() {
     const difficulty: Difficulty = location.state?.difficulty ?? 'easy';   // ← ici
     const BoardComponent = boardMap[difficulty];  
     const prefersReducedMotion = useReducedMotion();
+    const drawLockRef = useRef(false);
 
     useEffect(() => {
         if (!showRoundTransition) {
+            drawLockRef.current = false;
             return;
         }
 
@@ -52,12 +54,20 @@ function Game() {
     const handleCancelQuit = () => setOpenQuitDialog(false);
 
     const handleDrawCard = () => {
+        if (showRoundTransition || drawLockRef.current) {
+            return;
+        }
+
+        drawLockRef.current = true;
         const card = drawCard();
         if (card) {
             setRoundIndex((previous) => previous + 1);
             setRoundTransitionKey((previous) => previous + 1);
             setShowRoundTransition(true);
+            return;
         }
+
+        drawLockRef.current = false;
     };
 
     const handleResetDeck = () => {

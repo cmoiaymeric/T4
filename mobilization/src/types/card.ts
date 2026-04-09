@@ -1,4 +1,4 @@
-export type ActionCardType = 'study' | 'work' | 'mental';
+export type ActionCardType = 'study' | 'work' | 'mental' | 'admin' | 'social' | 'health' | 'help';
 
 export interface CardChoice {
     text: string;
@@ -16,5 +16,6 @@ export interface CardData {
     image: string;
     actionType?: ActionCardType;
     mentalBoost?: number;
+    moneyCost?: number;
     choices?: CardChoice[];
 }

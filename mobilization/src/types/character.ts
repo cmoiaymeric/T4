@@ -11,4 +11,6 @@ export interface CharacterProfile {
     mentalHealth: number;
     maxMentalHealth: number;
     trait?: string;
+    incomeLevel?: 'low' | 'medium' | 'high';
+    startingMoney?: number;
 }

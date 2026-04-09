@@ -974,6 +974,12 @@
     display: none;
 }
 
+.inventory-container {
+    height: 96px;
+    overflow: hidden;
+    position: relative;
+}
+
 .inventory-counter.counter-pending {
     color: rgba(240, 229, 196, 0.92);
     background: rgba(39, 62, 71, 0.45);
@@ -994,6 +1000,8 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.55rem;
     min-height: 96px;
+    max-height: 96px;
+    overflow: hidden;
 }
 
 .inventory-card {

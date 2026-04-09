@@ -105,6 +105,7 @@ function buildRepeatedCards(
     count: number,
     actionType: ActionCardType,
     mentalBoost?: number,
+    moneyCost?: number,
 ): CardData[] {
     return Array.from({ length: count }, (_, index) => ({
         id: `${prefix}-${index + 1}`,
@@ -113,6 +114,7 @@ function buildRepeatedCards(
         image,
         actionType,
         mentalBoost,
+        moneyCost,
     }));
 }
 
@@ -176,6 +178,44 @@ export const WORK_STUDY_CARDS: CardData[] = [
         heroImg,
         4,
         'mental',
+        1,
+    ),
+    // Nouveaux types de cartes Action
+    ...buildRepeatedCards(
+        'gerer-administratif',
+        'Gérer l\'administratif',
+        'Vous vous occupez des démarches administratives pour résoudre les problèmes.',
+        heroImg,
+        6,
+        'admin',
+        1,
+    ),
+    ...buildRepeatedCards(
+        'appeler-famille',
+        'Appeler la famille',
+        'Un appel à vos proches pour remonter le moral.',
+        heroImg,
+        4,
+        'social',
+        2,
+    ),
+    ...buildRepeatedCards(
+        'consulter-medecin',
+        'Consulter un médecin',
+        'Une consultation pour préserver votre santé.',
+        heroImg,
+        3,
+        'health',
+        1,
+        -20, // Coût de la consultation
+    ),
+    ...buildRepeatedCards(
+        'demander-aide',
+        'Demander de l\'aide',
+        'Vous faites appel à votre réseau pour obtenir de l\'aide.',
+        heroImg,
+        2,
+        'help',
         1,
     ),
 ];

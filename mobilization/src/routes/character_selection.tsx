@@ -23,6 +23,8 @@ const CHARACTER_CATALOG: CharacterProfile[] = [
         origin: 'international',
         mentalHealth: 7,
         maxMentalHealth: 10,
+        incomeLevel: 'low',
+        startingMoney: 50,
     },
     {
         id: 'algerien',
@@ -34,6 +36,8 @@ const CHARACTER_CATALOG: CharacterProfile[] = [
         origin: 'international',
         mentalHealth: 7,
         maxMentalHealth: 10,
+        incomeLevel: 'low',
+        startingMoney: 50,
     },
     {
         id: 'momo',
@@ -45,6 +49,8 @@ const CHARACTER_CATALOG: CharacterProfile[] = [
         origin: 'international',
         mentalHealth: 1,
         maxMentalHealth: 10,
+        incomeLevel: 'low',
+        startingMoney: 30,
     },
     {
         id: 'kadir',
@@ -56,6 +62,8 @@ const CHARACTER_CATALOG: CharacterProfile[] = [
         origin: 'international',
         mentalHealth: 6,
         maxMentalHealth: 10,
+        incomeLevel: 'medium',
+        startingMoney: 75,
     },
     {
         id: 'djason',
@@ -67,6 +75,8 @@ const CHARACTER_CATALOG: CharacterProfile[] = [
         origin: 'international',
         mentalHealth: 7,
         maxMentalHealth: 10,
+        incomeLevel: 'low',
+        startingMoney: 40,
     },
     {
         id: 'raphus',
@@ -78,6 +88,8 @@ const CHARACTER_CATALOG: CharacterProfile[] = [
         origin: 'france',
         mentalHealth: 8,
         maxMentalHealth: 10,
+        incomeLevel: 'high',
+        startingMoney: 150,
     },
     {
         id: 'aemerik',
@@ -90,6 +102,8 @@ const CHARACTER_CATALOG: CharacterProfile[] = [
         mentalHealth: 5,
         maxMentalHealth: 10,
         trait: 'Hyper nul en maths',
+        incomeLevel: 'medium',
+        startingMoney: 100,
     },
     {
         id: 'emre',
@@ -102,6 +116,8 @@ const CHARACTER_CATALOG: CharacterProfile[] = [
         mentalHealth: 9,
         maxMentalHealth: 10,
         trait: 'Fort en maths',
+        incomeLevel: 'medium',
+        startingMoney: 80,
     },
 ];
 

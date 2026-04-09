@@ -264,13 +264,53 @@ function Game() {
             return;
         }
 
-        setWorkStudyInventory((previous) => previous.filter((_, currentIndex) => currentIndex !== index));
-        if (card.actionType === 'mental') {
-            setMentalHealth((previous) => Math.min(previous + (card.mentalBoost ?? 1), selectedCharacter.maxMentalHealth));
+        // Vérifier si le joueur a assez d'argent pour les cartes qui coûtent
+        if (card.moneyCost && playerMoney < card.moneyCost) {
+            return;
         }
 
-        if (currentRequirement?.requiredType && card.actionType === currentRequirement.requiredType) {
-            setPlayedValidCount((previous) => Math.min(previous + 1, currentRequirement.requiredCount));
+        setWorkStudyInventory((previous) => previous.filter((_, currentIndex) => currentIndex !== index));
+        
+        // Appliquer les effets selon le type de carte
+        switch (card.actionType) {
+            case 'mental':
+                setMentalHealth((previous) => Math.min(previous + (card.mentalBoost ?? 1), selectedCharacter.maxMentalHealth));
+                break;
+            case 'study':
+                if (currentRequirement?.requiredType === 'study') {
+                    setPlayedValidCount((previous) => previous + 1);
+                }
+                break;
+            case 'work':
+                if (currentRequirement?.requiredType === 'work') {
+                    setPlayedValidCount((previous) => previous + 1);
+                }
+                break;
+            case 'admin':
+                // Les cartes admin résolvent les cases administratives
+                if (currentRequirement?.requiredType === 'study' || currentRequirement?.requiredType === 'work') {
+                    setPlayedValidCount((previous) => previous + 1);
+                }
+                break;
+            case 'social':
+                setMentalHealth((previous) => Math.min(previous + (card.mentalBoost ?? 2), selectedCharacter.maxMentalHealth));
+                break;
+            case 'health':
+                setMentalHealth((previous) => Math.min(previous + 1, selectedCharacter.maxMentalHealth));
+                break;
+            case 'help':
+                // Carte d'aide contextuelle
+                if (currentRequirement) {
+                    setPlayedValidCount((previous) => previous + 1);
+                }
+                break;
+            default:
+                break;
+        }
+
+        // Appliquer le coût monétaire si applicable
+        if (card.moneyCost) {
+            setPlayerMoney((previous) => Math.max(0, previous - card.moneyCost));
         }
 
         // Incrémenter le compteur de cartes jouées ce tour
@@ -510,8 +550,9 @@ function Game() {
                                 )}
                             </div>
                         )}
-                        <div className="inventory-list">
-                            <AnimatePresence initial={false}>
+                        <div className="inventory-container">
+                            <div className="inventory-list">
+                                <AnimatePresence initial={false}>
                                 {workStudyInventory.map((card, index) => (
                                     <motion.article
                                         key={`${card.id}-${index}`}
@@ -543,6 +584,7 @@ function Game() {
                                 <p className="inventory-empty">Inventaire plein: impossible de piocher des cartes Actions.</p>
                             )}
                         </div>
+                    </div>
                     </div>
                 </section>
 

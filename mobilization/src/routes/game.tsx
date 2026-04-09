@@ -260,10 +260,10 @@ function Game() {
                 <section className="inventory-panel">
                     <div className="inventory-content">
                         <p className="inventory-title">Inventaire Actions ({workStudyInventory.length}/{INVENTORY_LIMIT})</p>
-                        <p className="inventory-rule">
+                        <p className={`inventory-rule ${cardsPlayedThisTurn >= 3 ? 'warning' : cardsPlayedThisTurn >= 2 ? 'highlight' : ''}`}>
                             Cartes jouées ce tour: {cardsPlayedThisTurn}/3
                         </p>
-                        <p className="inventory-rule">
+                        <p className={`inventory-rule ${requirementMet ? 'highlight' : ''}`}>
                             Prochaine case: {currentRequirement?.label ?? 'Aucune'}
                         </p>
                         <div className="inventory-list">

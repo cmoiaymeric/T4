@@ -3,7 +3,7 @@ import type { CardData } from '../types/card';
 // Import des illustrations depuis le dossier assets/illustrations
 import controleVisaImg from '../assets/illustrations/ContrroleVisa.jpeg';
 import maladieImg from '../assets/illustrations/Maladie.png';
-import decesImg from '../assets/illustrations/Deces.png';
+import decesImg from '../assets/illustrations/Deces.svg';
 import absenceImg from '../assets/illustrations/Absence.png';
 import loyerImg from '../assets/illustrations/LoyerAPayer.png';
 import retardBourseImg from '../assets/illustrations/RetardBourse.png';

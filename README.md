@@ -110,20 +110,18 @@ Le niveau de difficulté est déterminé par la combinaison **personnage × plat
 
 | Personnage | Revenu | Santé mentale de départ |
 |---|---|---|
-| **Kadir** 🇫🇷 | Moyen | 8/10 |
-| **Momo** 🇫🇷 | Faible | 6/10 |
+| **Kadir** 🇫🇷🇹🇷 | Moyen | 8/10 |
+| **Momo** 🇫🇷🇹🇷 | Faible | 1/10 |
 | **Raphus** 🇫🇷 | Élevé | 9/10 |
 
 #### ✈️ Mode Mobilité (étudiants internationaux)
 
 | Personnage | Origine | Revenu | Santé mentale de départ |
 |---|---|---|---|
-| **Ofmaroki** 🇲🇦 | Marocain | Faible | 7/10 |
 | **Algerien** 🇩🇿 | Algérien | Moyen | 8/10 |
 | **Emre** 🇹🇷 | Turc | Moyen | 7/10 |
-| **Kadir** 🇹🇷 | Turc | Faible | 6/10 |
 | **Ofmaroki** 🇲🇦 | Marocain | Ultra Faible | 8/10 |
-| **Aemerik** 🇺🇸 | Américain | Elevé | 9/10 |
+| **Aemerik** 🇫🇷 | Américain | Elevé | 9/10 |
 | **Djason** 🇭🇹 | Haïtien | Faible | 5/10 |
 
 ---

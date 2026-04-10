@@ -122,8 +122,8 @@ Le niveau de difficulté est déterminé par la combinaison **personnage × plat
 | **Algerien** 🇩🇿 | Algérien | Moyen | 8/10 |
 | **Emre** 🇹🇷 | Turc | Moyen | 7/10 |
 | **Kadir** 🇹🇷 | Turc | Faible | 6/10 |
-| **Ofmaroki (int.)** 🇲🇦 | Marocain | Élevé | 8/10 |
-| **Aemerik** 🇺🇸 | Américain | Élevé | 9/10 |
+| **Ofmaroki** 🇲🇦 | Marocain | Ultra Faible | 8/10 |
+| **Aemerik** 🇺🇸 | Américain | Elevé | 9/10 |
 | **Djason** 🇭🇹 | Haïtien | Faible | 5/10 |
 
 ---

@@ -71,7 +71,7 @@ function Game() {
         remainingCards: remainingWorkStudyCards,
     } = useDeckFromCards(WORK_STUDY_CARDS);
     const [openQuitDialog, setOpenQuitDialog] = useState(false);
-    const [roundIndex, setRoundIndex] = useState(0);
+    const [roundIndex, setRoundIndex] = useState(1);
     const [roundTransitionKey, setRoundTransitionKey] = useState(0);
     const [showRoundTransition, setShowRoundTransition] = useState(false);
     const [workStudyInventory, setWorkStudyInventory] = useState<CardData[]>([]);

@@ -33,7 +33,7 @@ Les étapes du projet tuteuré T2 sont les suivantes :
 - Proposition 2
 
 ## Grille d'évaluation T2 (à remplir par les membres du groupe T4)
-
+Ne nous a pas évalué et n'a pas proposé d'amélioration
 - Procédure
   - [ ] La procédure a été suivie à la lettre sans le moindre écart.
   - [ ] La procédure a été globalement suivie.

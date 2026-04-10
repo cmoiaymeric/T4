@@ -217,7 +217,7 @@ Le niveau de difficulté est déterminé par la combinaison **personnage × plat
 - Session de **45 à 90 minutes**
 - Interface jouable sans explication préalable
 - **8 personnages** jouables × **2 modes** = 16 expériences distinctes
-- Chaque carte Événement impacte **au moins une ressource**
+- Chaque carte Événement impacte **au moins une ressource** (santé mentale, argent, ...)
 - Le plateau Mobilité contient **+30 % de cases administratives** vs le plateau Natif
 - Inventaire limité à **6 cartes Action** maximum
 - Éléments visuels **inclusifs et non stéréotypés**

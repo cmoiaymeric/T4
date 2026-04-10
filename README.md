@@ -44,7 +44,7 @@ https://mobilization.netlify.app/
 
 en local:  
 - cloner le dépot dans un terminal : `git clone git@git.unistra.fr:bratislava-x-rabat-x-paris/t4.git`
-- ce déplacer dans le répertoire : `cd t4/mobilization`
+- se déplacer dans le répertoire : `cd t4/mobilization`
 - installer bun via ce lien : https://bun.com/docs/installation
 - éxecuter la commande: `bun install`, puis `bun run dev`
 - cliquer sur le lien qui apparaîtra dans le terminal

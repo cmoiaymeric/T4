@@ -114,12 +114,12 @@ Justifications : La plupart des commits sont clairement renseignés mais d'autre
 
 ## Prototype
 - Installation 
-  - [ ] Le prototype s'installe sans effort.
+  - [X] Le prototype s'installe sans effort.
   - [ ] Le prototype s'installe en suivant une procédure.
   - [ ] Le prototype ne s'installe pas.
 - Exécution
   - [ ] Le prototype s'exécute en cliquant sur une icône.
-  - [ ] Le prototype s'exécute en suivant une procédure.
+  - [X] Le prototype s'exécute en suivant une procédure.
   - [ ] Le prototype ne s'exécute pas
 - Stabilité
   - [X] Le prototype est parfaitement stable
@@ -151,11 +151,13 @@ Autres justifications : Ce jeu conviendrait aux lycéens qui ne sont pas encore 
   - [ ] Une capture d'écran est donnée.
   - [ ] Aucune capture d'écran n'est donnée.
 - Procédures d'installation et d'exécution
-  - [ ] Cette partie est informative et succincte (1 phrase).
+  - [X] Cette partie est informative et succincte (1 phrase).
   - [ ] Cette partie est informative.
   - [ ] Cette partie n'est pas informative.
 
 Commentaire : Installation et éxécution non notable car il n'y a pas d'instruction dans le README pour le moment.
+
+Commentaire groupe : Nous avons mis à jour le procédé d'installation
 
 Justifications : Le README est complet avec plusieurs captures d'écrans, le projet est très bien présenté, tout est clair. Aucune information n'est donné pour tester en local le jeu, mais un lien est donné pour tester le jeu sur internet.
 

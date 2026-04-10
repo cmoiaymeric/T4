@@ -20,7 +20,7 @@ Liens d'évaluations :
 
 ## 🎯 Présentation du projet
 
-**Mobilization** est un serious game éducatif multijoueur qui simule une année universitaire pour sensibiliser aux défis des étudiants — en mobilité internationale ou dans leur pays d'origine. En fonction du **personnage choisi** et du **mode de jeu**, les contraintes varient considérablement : administratives, financières, culturelles. L'objectif : faire comprendre par l'expérience que tous les étudiants ne partent pas avec les mêmes chances.
+**Mobilization** est un serious game éducatif qui simule une année universitaire pour sensibiliser aux défis des étudiants — en mobilité internationale ou dans leur pays d'origine. En fonction du **personnage choisi** et du **mode de jeu**, les contraintes varient considérablement : administratives, financières, culturelles. L'objectif : faire comprendre par l'expérience que tous les étudiants ne partent pas avec les mêmes chances.
 
 ---
 

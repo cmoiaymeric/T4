@@ -238,6 +238,8 @@ Chaque personnage dispose d'attributs de départ distincts (revenu, santé menta
 **Débriefing intégré**  
 À la fin de la partie, un écran de statistiques récapitule le parcours du joueur — support de discussion pédagogique pour un enseignant ou formateur.
 
+<img src="./mobilization/src/assets/debrief.png" width="260" alt="Menu du jeu"/><br/><sub>Exemple de debrief</sub>
+
 **Architecture technique**  
 TypeScript strict, composants modulaires (React), hooks personnalisés pour la gestion des decks et des états. 20 tests unitaires couvrant la logique de jeu, la détection de situations bloquées et la validation des mécaniques de progression.
 

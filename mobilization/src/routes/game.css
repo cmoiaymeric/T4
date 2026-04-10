@@ -975,9 +975,38 @@
 }
 
 .inventory-container {
-    height: 96px;
-    overflow: hidden;
+    min-height: 96px;
+    max-height: 200px;
+    overflow-y: auto;
     position: relative;
+}
+
+/* Styles personnalisés pour la scrollbar */
+.inventory-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.inventory-container::-webkit-scrollbar-track {
+    background: rgba(39, 62, 71, 0.3);
+    border-radius: 3px;
+    margin: 4px 0;
+}
+
+.inventory-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--color-accent-warm), var(--color-primary));
+    border-radius: 3px;
+    border: 1px solid rgba(216, 201, 155, 0.2);
+    transition: background 0.3s ease;
+}
+
+.inventory-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--color-accent-light), var(--color-accent-warm));
+}
+
+/* Styles pour Firefox */
+.inventory-container {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent-warm) rgba(39, 62, 71, 0.3);
 }
 
 .inventory-counter.counter-pending {
@@ -1000,8 +1029,8 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.55rem;
     min-height: 96px;
-    max-height: 96px;
-    overflow: hidden;
+    max-height: none;
+    overflow: visible;
 }
 
 .inventory-card {

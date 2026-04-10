@@ -591,9 +591,9 @@ function Game() {
                 <div className="game-main-area">
                     <div className="board-center-column">
                         <div className={`board-counter-display ${counterStateClass}`}>
-                            {playedValidCount}/{requiredCount}
+                            {nextCaseLabel === 'Hasard' ? 'Événement au prochain tour' : requiredCount === 0 ? 'Libre' : `${playedValidCount}/${requiredCount}`}
                         </div>
-                        <div className="board-required-type">Carte requise: {requiredTypeLabel}</div>
+                        <div className="board-required-type">Carte requise: {nextCaseLabel === 'Hasard' ? 'Événement' : requiredTypeLabel}</div>
                     <div className={`game-card-area ${drawnCard ? 'active' : ''}`}>
                         <AnimatePresence mode="wait">
                             {drawnCard ? (

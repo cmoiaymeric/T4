@@ -80,13 +80,11 @@ function Game() {
     const [cardsPlayedThisTurn, setCardsPlayedThisTurn] = useState(0);
     const [isDeadlock, setIsDeadlock] = useState(false);
     const [deadlockType, setDeadlockType] = useState<'no-valid-cards' | 'no-cards-left' | 'limit-reached' | null>(null);
-    const [showHelpDialog, setShowHelpDialog] = useState(false);
-    const [currentEventCard, setCurrentEventCard] = useState<CardData | null>(null);
+        const [currentEventCard, setCurrentEventCard] = useState<CardData | null>(null);
     const [showEventChoices, setShowEventChoices] = useState(false);
     const [playerMoney, setPlayerMoney] = useState(100);
     const [eventPlayedThisTurn, setEventPlayedThisTurn] = useState(false);
-    const [isOnHasardCase, setIsOnHasardCase] = useState(false);
-    const [eventRequiredForHasard, setEventRequiredForHasard] = useState(false);
+        const [eventRequiredForHasard, setEventRequiredForHasard] = useState(false);
     const [showEventNotification, setShowEventNotification] = useState(false);
     const [gameWon, setGameWon] = useState(false);
     const [gameLost, setGameLost] = useState(false);
@@ -117,7 +115,6 @@ function Game() {
     
     // Mettre à jour l'état de la case Hasard
     useEffect(() => {
-        setIsOnHasardCase(currentlyOnHasard);
         setEventRequiredForHasard(currentlyOnHasard && !eventPlayedThisTurn);
     }, [currentlyOnHasard, eventPlayedThisTurn]);
     const requiredTypeLabel = currentRequirement?.requiredType === 'study'
@@ -169,7 +166,6 @@ function Game() {
         // Ajouter la carte de secours à l'inventaire
         if (workStudyInventory.length < INVENTORY_LIMIT) {
             setWorkStudyInventory((previous) => [rescueCard, ...previous]);
-            setShowHelpDialog(false);
         }
     };
 
@@ -259,11 +255,7 @@ function Game() {
     };
     const handleCancelQuit = () => setOpenQuitDialog(false);
 
-    const handleDrawCard = () => {
-        if (showRoundTransition) return;
-        drawCard();
-    };
-
+    
     const handleDrawWorkStudyCard = () => {
         if (showRoundTransition || workStudyInventory.length >= INVENTORY_LIMIT) return;
         const card = drawWorkStudyCard();
@@ -328,7 +320,7 @@ function Game() {
 
         // Appliquer le coût monétaire si applicable
         if (card.moneyCost) {
-            setPlayerMoney((previous) => Math.max(0, previous - card.moneyCost));
+            setPlayerMoney((previous) => Math.max(0, previous - (card.moneyCost || 0)));
         }
 
         // Incrémenter le compteur de cartes jouées ce tour

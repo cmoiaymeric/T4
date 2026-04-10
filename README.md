@@ -214,7 +214,7 @@ Le niveau de difficulté est déterminé par la combinaison **personnage × plat
 
 ## 🚧 Contraintes de développement
 
-- Session de **45 à 90 minutes**
+- Session de **10 à 20 minutes**
 - Interface jouable sans explication préalable
 - **8 personnages** jouables × **2 modes** = 16 expériences distinctes
 - Chaque carte Événement impacte **au moins une ressource** (santé mentale, argent, ...)

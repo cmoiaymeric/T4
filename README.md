@@ -20,13 +20,13 @@ En fonction du **personnage tiré** et du **plateau choisi**, le jeu est plus ou
 
 ## 🖼️ Captures d'écran
 
-*À compléter lors du développement.*
+*À compléter*
 
 ---
 
-## ⚙️ Procédures d'installation et d'exécution
+## ⚙️ Jouer au jeu
 
-*À compléter lors du développement.*
+*lien ici*
 
 ---
 
@@ -36,24 +36,24 @@ En fonction du **personnage tiré** et du **plateau choisi**, le jeu est plus ou
 
 ### 🧠 Objectifs pédagogiques
 
-**1. Comprendre les inégalités selon le contexte géographique**  
-Les joueurs découvrent concrètement que les contraintes rencontrées par un étudiant (logement, visa, budget, intégration sociale) varient considérablement selon qu'il étudie dans son pays d'origine ou à l'étranger.
+**1. Comprendre les inégalités "pratiques" selon le contexte géographique**  
+Les joueurs découvrent concrètement que les contraintes rencontrées par un étudiant (logement, visa, budget) varient considérablement selon qu'il étudie dans son pays d'origine ou à l'étranger.
 
-**2. Identifier l'impact des événements de vie sur la santé étudiante**  
-Chaque événement du jeu (contrôle fiscal, soirée difficile, démarche administrative) se traduit par des effets mesurables sur la jauge de santé du personnage, rendant visible le lien entre contexte de vie et bien-être.
+**2. Prendre conscience du poids des choix et des ressources disponibles**  
+Le joueur apprend à prioriser ses actions (travailler, étudier, payer son loyer) avec des ressources limitées, simulant la réalité de la gestion de vie étudiante.  
 
-**3. Prendre conscience du poids des choix et des ressources disponibles**  
-Le joueur apprend à prioriser ses actions (travailler, étudier, payer son loyer) avec des ressources limitées, simulant la réalité de la gestion de vie étudiante.
+**3. Développer une intelligence émotionnelle et une empathie interculturelle**  
+En incarnant des personnages issus de contextes différents (Bratislava, Rabat, Paris) et en vivant leurs contraintes spécifiques, les joueurs construisent une représentation concrète et empathique des réalités de leurs pairs internationaux.
 
 ---
 
 ### 🧠+ Objectifs pédagogiques avancés
 
-**4. Appréhender les mécanismes systémiques de discrimination et de vulnérabilité**  
-Selon le personnage tiré (nationalité, origine sociale, statut de mobilité), certains joueurs font face à des obstacles structurels supplémentaires (délais de visa, refus de logement, barrière de la langue), permettant une réflexion sur les inégalités systémiques dans l'enseignement supérieur.
+**4. Comprendre les inégalités sociales**  
+Nous n'avons pas eu le temps d'implémenter de mécaniques pour expliquer les difficultés d'intégration sociale que peuvent vivre les étudiants étrangers (en mobilité notamment). Cela pourraît être une piste intéressante pour le T3.   
+Suggestion : Implémenter une mécanique "d'amis" qui compte le nombre d'amis de l'étudiant et qui influe sur sa santé mentale.
 
-**5. Développer une intelligence émotionnelle et une empathie interculturelle**  
-En incarnant des personnages issus de contextes différents (Bratislava, Rabat, Paris) et en vivant leurs contraintes spécifiques, les joueurs construisent une représentation concrète et empathique des réalités de leurs pairs internationaux.
+
 
 ---
 
@@ -121,7 +121,7 @@ Le jeu se présente sous forme d'un plateau physique (ou numérique) avec :
 
 ### 🃏 Cartes du jeu
 
-#### 🎭 Cartes Personnage *(tirées aléatoirement au début)*
+#### Cartes Personnage *(tirées aléatoirement au début)*
 
 | Personnage | Profil | Plateau recommandé | Difficulté |
 |---|---|---|---|
@@ -134,7 +134,7 @@ Chaque personnage a des attributs de départ : niveau de revenus, langue locale,
 
 ---
 
-#### 🌩️ Cartes Événement *(pioche aléatoire chaque tour)*
+#### Cartes Événement *(pioche aléatoire chaque tour)*
 
 **Événements négatifs :**
 - Contrôle des impôts / régularisation fiscale
@@ -154,7 +154,7 @@ Chaque personnage a des attributs de départ : niveau de revenus, langue locale,
 
 ---
 
-#### 🎴 Cartes Action *(main du joueur)*
+#### Cartes Action *(main du joueur)*
 
 | Carte | Effet | Coût |
 |---|---|---|
@@ -168,7 +168,7 @@ Chaque personnage a des attributs de départ : niveau de revenus, langue locale,
 
 ---
 
-#### 📍 Cases du plateau *(exemples)*
+#### Cases du plateau *(exemples)*
 
 | Case | Carte requise |
 |---|---|

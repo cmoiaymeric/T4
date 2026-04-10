@@ -5,7 +5,7 @@
 ---
 
 **Groupe :** BRATISLAVA × RABAT × PARIS  
-**Membres :** Ferencz ROUDET · Omar Koufar LASFAR · Sacha EHRMANN · Aymeric FENARD  
+**Membres :** Ferencz ROUDET · Omar Farouk LASFAR · Sacha EHRMANN · Aymeric FENARD  
 **Évaluations T4 :**
 
 Liens d'évaluations :

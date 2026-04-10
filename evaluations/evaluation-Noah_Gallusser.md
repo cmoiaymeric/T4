@@ -153,7 +153,9 @@ Autres justifications : Ce jeu conviendrait aux lycéens qui ne sont pas encore 
 - Procédures d'installation et d'exécution
   - [ ] Cette partie est informative et succincte (1 phrase).
   - [ ] Cette partie est informative.
-  - [X] Cette partie n'est pas informative.
+  - [ ] Cette partie n'est pas informative.
+
+Commentaire : Installation et éxécution non notable car il n'y a pas d'instruction dans le README pour le moment.
 
 Justifications : Le README est complet avec plusieurs captures d'écrans, le projet est très bien présenté, tout est clair. Aucune information n'est donné pour tester en local le jeu, mais un lien est donné pour tester le jeu sur internet.
 
@@ -202,7 +204,7 @@ Justifications :
 Le cahier des charges est très bien conçu et correspond à ce qui est attendu dans le modèle de démo. Tout est très bien expliqué. Cependant il manque le paragraphe sur l'interface.
 
 ## Résultat T4
-- Total d'item « Excellent » (2 point) : 
-- Total d'item « Satisfaisant » (1 point) : 
-- Total d'item « Insatisfaisant » (0 point) :
-- total des points (sur 40) :
+- Total d'item « Excellent » (2 point) :  12
+- Total d'item « Satisfaisant » (1 point) : 3
+- Total d'item « Insatisfaisant » (0 point) : 1
+- total des points (sur 40) : 27/40

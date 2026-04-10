@@ -85,6 +85,9 @@ function Game() {
     const [showEventChoices, setShowEventChoices] = useState(false);
     const [playerMoney, setPlayerMoney] = useState(100);
     const [eventPlayedThisTurn, setEventPlayedThisTurn] = useState(false);
+    const [isOnHasardCase, setIsOnHasardCase] = useState(false);
+    const [eventRequiredForHasard, setEventRequiredForHasard] = useState(false);
+    const [showEventNotification, setShowEventNotification] = useState(false);
     const [gameWon, setGameWon] = useState(false);
     const [gameLost, setGameLost] = useState(false);
     const [gameStats, setGameStats] = useState({
@@ -103,10 +106,20 @@ function Game() {
     const boardLabels = getBoardLabels(playerMode);
     const prefersReducedMotion = useReducedMotion();
     const nextCaseLabel = boardLabels[playerPosition + 1] ?? null;
+    const currentCaseLabel = boardLabels[playerPosition] ?? null;
     const currentRequirement = nextCaseLabel ? getProgressRequirement(nextCaseLabel, playerMode) : null;
     const requiredCount = currentRequirement?.requiredCount ?? 0;
     const requirementMet = requiredCount === 0 || playedValidCount >= requiredCount;
     const counterStateClass = requirementMet ? 'counter-ready' : 'counter-pending';
+    
+    // Vérifier si le joueur est sur une case Hasard
+    const currentlyOnHasard = currentCaseLabel === 'Hasard';
+    
+    // Mettre à jour l'état de la case Hasard
+    useEffect(() => {
+        setIsOnHasardCase(currentlyOnHasard);
+        setEventRequiredForHasard(currentlyOnHasard && !eventPlayedThisTurn);
+    }, [currentlyOnHasard, eventPlayedThisTurn]);
     const requiredTypeLabel = currentRequirement?.requiredType === 'study'
         ? 'Étudier'
         : currentRequirement?.requiredType === 'work'
@@ -205,6 +218,11 @@ function Game() {
         setPlayerMoney((prev) => Math.max(0, prev + moneyChange));
         setCurrentEventCard(null);
         setShowEventChoices(false);
+
+        // Si on est sur une case Hasard, marquer que l'événement a été joué
+        if (currentlyOnHasard) {
+            setEventPlayedThisTurn(true);
+        }
 
         // Vérifier la condition de défaite
         if (newMentalHealth === 0 && !gameWon && !gameLost) {
@@ -319,6 +337,13 @@ function Game() {
 
     const handlePassTurn = () => {
         if (showRoundTransition) return;
+
+        // Vérifier si un événement est requis dans la case Hasard
+        if (eventRequiredForHasard) {
+            setShowEventNotification(true);
+            setTimeout(() => setShowEventNotification(false), 3000);
+            return;
+        }
 
         if (requirementMet && playerPosition < boardLabels.length - 1) {
             const newPosition = Math.min(playerPosition + 1, boardLabels.length - 1);
@@ -833,6 +858,26 @@ function Game() {
                                 </motion.button>
                             </div>
                         </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+            
+            {/* Notification stylisée pour événement requis */}
+            <AnimatePresence>
+                {showEventNotification && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -50, scale: 0.8 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -50, scale: 0.8 }}
+                        transition={{ duration: 0.3, ease: 'easeOut' }}
+                        className="event-notification"
+                    >
+                        <div className="event-notification-content">
+                            <span className="event-notification-icon">!</span>
+                            <span className="event-notification-text">
+                                Vous devez faire un événement avant de pouvoir passer au tour suivant !
+                            </span>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

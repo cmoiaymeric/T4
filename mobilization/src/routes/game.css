@@ -1323,3 +1323,61 @@
         transform: scale(1);
     }
 }
+
+.event-notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.event-notification-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, rgba(164, 36, 59, 0.95), rgba(189, 99, 47, 0.95));
+    border: 2px solid rgba(216, 201, 155, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    color: var(--color-accent-light);
+    font-family: 'Augustus', serif;
+    font-size: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.event-notification-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(216, 201, 155, 0.2);
+    border: 2px solid var(--color-accent-light);
+    color: var(--color-accent-light);
+    font-weight: bold;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.event-notification-text {
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 800px) {
+    .event-notification-content {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        max-width: 90vw;
+    }
+    
+    .event-notification-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+    }
+}

@@ -24,12 +24,12 @@ function getProgressRequirement(nextCaseLabel: string, mode: PlayerMode): Progre
         return {
             requiredType: 'study',
             requiredCount: mode === 'natif' ? 1 : 2,
-            label: mode === 'natif' ? 'Partiel: 1 carte Etudier' : 'Partiel: 2 cartes Etudier',
+            label: mode === 'natif' ? 'Partiel: 1 carte Étudier' : 'Partiel: 2 cartes Étudier',
         };
     }
 
     if (nextCaseLabel === 'Loyer') {
-        return { requiredType: 'study', requiredCount: 2, label: 'Loyer: 2 cartes Etudier' };
+        return { requiredType: 'study', requiredCount: 2, label: 'Loyer: 2 cartes Étudier' };
     }
 
     if (nextCaseLabel === 'Prefecture') {
@@ -50,15 +50,15 @@ function getInitialCharacter(locationState: unknown): CharacterProfile {
 
     return {
         id: 'fallback',
-        firstName: 'Etudiant',
+        firstName: 'Étudiant',
         lastName: 'Anonyme',
-        nationality: 'Francais',
+        nationality: 'Français',
         flag: '🇫🇷',
         image: '',
         origin: 'france',
         mentalHealth: 7,
         maxMentalHealth: 10,
-        trait: 'Profil par defaut',
+        trait: 'Profil par défaut',
     };
 }
 
@@ -108,7 +108,7 @@ function Game() {
     const requirementMet = requiredCount === 0 || playedValidCount >= requiredCount;
     const counterStateClass = requirementMet ? 'counter-ready' : 'counter-pending';
     const requiredTypeLabel = currentRequirement?.requiredType === 'study'
-        ? 'Etudier'
+        ? 'Étudier'
         : currentRequirement?.requiredType === 'work'
             ? 'Travailler'
             : 'Aucune';
@@ -467,7 +467,7 @@ function Game() {
                             exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -14, scale: prefersReducedMotion ? 1 : 1.04 }}
                             transition={{ duration: prefersReducedMotion ? 0.01 : 0.26, ease: 'easeOut' }}
                         >
-                            {`France | ${playerMode === 'natif' ? 'Etudiant natif' : 'Etudiant en mobilite'} | Tour ${roundIndex}`}
+                            {`France | ${playerMode === 'natif' ? 'Étudiant natif' : 'Étudiant en mobilité'} | Tour ${roundIndex}`}
                         </motion.div>
                     </AnimatePresence>
                 </div>
@@ -573,7 +573,7 @@ function Game() {
                                             <span className="inventory-card-name">{card.name}</span>
                                         </div>
                                         <p className="inventory-card-description">{card.description}</p>
-                                        {card.actionType === 'mental' && <p className="inventory-card-description">Cliquez pour recuperer de la sante mentale.</p>}
+                                        {card.actionType === 'mental' && <p className="inventory-card-description">Cliquez pour récupérer de la santé mentale.</p>}
                                     </motion.article>
                                 ))}
                             </AnimatePresence>
@@ -581,7 +581,7 @@ function Game() {
                                 <p className="inventory-empty">Piochez le deck Actions pour remplir l'inventaire.</p>
                             )}
                             {workStudyInventory.length >= INVENTORY_LIMIT && (
-                                <p className="inventory-empty">Inventaire plein: impossible de piocher des cartes Actions.</p>
+                                <p className="inventory-empty">Inventaire plein : impossible de piocher des cartes Actions.</p>
                             )}
                         </div>
                     </div>

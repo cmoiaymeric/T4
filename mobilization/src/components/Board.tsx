@@ -5,8 +5,8 @@ interface BoardProps {
   currentPosition: number;
 }
 
-const NATIVE_BOARD_LABELS = ['Rentrer', 'Partiel', 'Hasard', 'Loyer', 'Hasard', 'Partiel', 'Loyer', 'Diplome'];
-const MOBILITY_BOARD_LABELS = ['Rentrer', 'Partiel', 'Hasard', 'Prefecture', 'Loyer', 'Hasard', 'Partiel', 'Loyer', 'Prefecture', 'Hasard', 'Partiel', 'Diplome'];
+const NATIVE_BOARD_LABELS = ['Rentrée', 'Partiel', 'Hasard', 'Loyer', 'Hasard', 'Partiel', 'Loyer', 'Diplome'];
+const MOBILITY_BOARD_LABELS = ['Rentrée', 'Partiel', 'Hasard', 'Prefecture', 'Loyer', 'Hasard', 'Partiel', 'Loyer', 'Prefecture', 'Hasard', 'Partiel', 'Diplome'];
 
 export type PlayerMode = 'natif' | 'mobilite';
 

@@ -30,7 +30,7 @@ const CHARACTER_CATALOG: CharacterProfile[] = [
         id: 'algerien',
         firstName: 'Algerien',
         lastName: 'Bouzid',
-        nationality: 'Algerien',
+        nationality: 'Algérien',
         flag: '🇩🇿',
         image: algerienPng,
         origin: 'international',
@@ -82,7 +82,7 @@ const CHARACTER_CATALOG: CharacterProfile[] = [
         id: 'raphus',
         firstName: 'Raphus',
         lastName: 'Morel',
-        nationality: 'Francais',
+        nationality: 'Français',
         flag: '🇫🇷',
         image: raphusPng,
         origin: 'france',
@@ -95,7 +95,7 @@ const CHARACTER_CATALOG: CharacterProfile[] = [
         id: 'aemerik',
         firstName: 'Aemerik',
         lastName: 'Lefevre',
-        nationality: 'Francais',
+        nationality: 'Français',
         flag: '🇫🇷',
         image: aemerikImg,
         origin: 'france',
@@ -186,7 +186,7 @@ function CharacterSelection() {
                         {selectedCharacter.trait && (
                             <p className="character-trait">{selectedCharacter.trait}</p>
                         )}
-                        <p className="character-trait">Sante mentale: {selectedCharacter.mentalHealth}/{selectedCharacter.maxMentalHealth}</p>
+                        <p className="character-trait">Santé mentale : {selectedCharacter.mentalHealth}/{selectedCharacter.maxMentalHealth}</p>
                     </article>
                 )}
 

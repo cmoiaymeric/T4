@@ -13,9 +13,9 @@ function DifficultySelection() {
     if (!selectedMode) return;
     const fallbackCharacter: CharacterProfile = {
       id: selectedMode === 'Natif' ? 'fallback-natif' : 'fallback-mobilite',
-      firstName: 'Etudiant',
+      firstName: 'Étudiant',
       lastName: selectedMode,
-      nationality: selectedMode === 'Natif' ? 'Francais' : 'International',
+      nationality: selectedMode === 'Natif' ? 'Français' : 'International',
       flag: selectedMode === 'Natif' ? '🇫🇷' : '🌍',
       image: '',
       origin: selectedMode === 'Natif' ? 'france' : 'international',

@@ -24,13 +24,36 @@ export const CARDS: CardData[] = [
         image: maladieImg,
     },
     {
+        id: 'maladie-2',
+        name: 'Maladie',
+        description: 'Vous tombez malade et ratez une semaine de cours',
+        image: maladieImg,
+    },
+    {
         id: 'loyer-a-payer',
         name: 'Loyer à payer',
         description: 'Votre loyer est dû. Payez ou passez votre tour',
         image: loyerImg,
     },
     {
+        id: 'loyer-a-payer-2',
+        name: 'Loyer à payer',
+        description: 'Votre loyer est dû. Payez ou passez votre tour',
+        image: loyerImg,
+    },
+    {
         id: 'retard-bourse',
+        name: 'Retard de bourse',
+        description: 'Votre bourse n\'est toujours pas arrivée. Vous devez trouver une solution rapide :',
+        image: retardBourseImg,
+        choices: [
+            { text: 'Emprunter à la famille (+50€, -1 santé mentale)', effect: { mentalHealth: -1, money: 50 } },
+            { text: 'Travail illégal (+30€, -2 santé mentale)', effect: { mentalHealth: -2, money: 30 } },
+            { text: 'Attendre (0€, -3 santé mentale)', effect: { mentalHealth: -3, money: 0 } }
+        ]
+    },
+    {
+        id: 'retard-bourse-2',
         name: 'Retard de bourse',
         description: 'Votre bourse n\'est toujours pas arrivée. Vous devez trouver une solution rapide :',
         image: retardBourseImg,
@@ -52,7 +75,29 @@ export const CARDS: CardData[] = [
         ]
     },
     {
+        id: 'soiree-tourne-mal-2',
+        name: 'Soirée tourne mal',
+        description: 'Vous vous réveillez avec une gueule de bois. Choisissez votre action :',
+        image: soireeImg,
+        choices: [
+            { text: 'Prendre un café (-1 santé mentale)', effect: { mentalHealth: -1, money: 0 } },
+            { text: 'Rester chez soi (-2 santé mentale)', effect: { mentalHealth: -2, money: 0 } },
+            { text: 'Appeler un ami (coûte 10€)', effect: { mentalHealth: 1, money: -10 } }
+        ]
+    },
+    {
         id: 'absence',
+        name: 'Absence injustifiée',
+        description: 'Vous avez des absences non justifiées. Comment gérez-vous cette situation ?',
+        image: absenceImg,
+        choices: [
+            { text: 'Faux certificat médical (+20€, risque si découvert)', effect: { mentalHealth: 0, money: 20 } },
+            { text: 'Parler à l\'administration (-1 santé mentale)', effect: { mentalHealth: -1, money: 0 } },
+            { text: 'Accepter la sanction (-50€, -2 santé mentale)', effect: { mentalHealth: -2, money: -50 } }
+        ]
+    },
+    {
+        id: 'absence-2',
         name: 'Absence injustifiée',
         description: 'Vous avez des absences non justifiées. Comment gérez-vous cette situation ?',
         image: absenceImg,
@@ -85,7 +130,29 @@ export const CARDS: CardData[] = [
         ]
     },
     {
+        id: 'bourse-obtenue-2',
+        name: 'Bourse obtenue !',
+        description: 'Félicitations ! Votre bourse est arrivée. Comment la gérez-vous ?',
+        image: heroImg,
+        choices: [
+            { text: 'Célébrer (+2 santé mentale, -30€)', effect: { mentalHealth: 2, money: -30 } },
+            { text: 'Économiser (0€, 0 santé mentale)', effect: { mentalHealth: 0, money: 0 } },
+            { text: 'Aider la famille (-50€, +1 santé mentale)', effect: { mentalHealth: 1, money: -50 } }
+        ]
+    },
+    {
         id: 'opportunite-emploi',
+        name: 'Opportunité d\'emploi',
+        description: 'Une offre d\'emploi à temps partiel se présente. Intéressant !',
+        image: heroImg,
+        choices: [
+            { text: 'Accepter (+100€, -1 santé mentale)', effect: { mentalHealth: -1, money: 100 } },
+            { text: 'Refuser (0€, 0 santé mentale)', effect: { mentalHealth: 0, money: 0 } },
+            { text: 'Négocier (+80€, 0 santé mentale)', effect: { mentalHealth: 0, money: 80 } }
+        ]
+    },
+    {
+        id: 'opportunite-emploi-2',
         name: 'Opportunité d\'emploi',
         description: 'Une offre d\'emploi à temps partiel se présente. Intéressant !',
         image: heroImg,
@@ -145,66 +212,65 @@ export const WORK_STUDY_CARDS: CardData[] = [
         1,
     ),
     ...buildRepeatedCards(
-        'jeu-video',
-        'Jeu video',
-        'Une pause gaming qui recharge le moral.',
+        'etudier',
+        'Étudier',
+        'Une session d\'étude pour progresser.',
         heroImg,
-        5,
+        12,
+        'study',
+        1,
+    ),
+    ...buildRepeatedCards(
+        'travailler',
+        'Travailler',
+        'Un travail pour gagner de l\'argent.',
+        heroImg,
+        12,
+        'work',
+        1,
+    ),
+    ...buildRepeatedCards(
+        'repos',
+        'Repos',
+        'Un moment de détente pour récupérer.',
+        heroImg,
+        8,
         'mental',
         1,
     ),
     ...buildRepeatedCards(
-        'sport',
-        'Sport',
-        'Une seance sportive pour recuperer mentalement.',
-        heroImg,
-        5,
-        'mental',
-        1,
-    ),
-    ...buildRepeatedCards(
-        'chicha',
-        'Chicha',
-        'Vous soufflez un peu pour diminuer le stress.',
-        heroImg,
-        4,
-        'mental',
-        1,
-    ),
-    ...buildRepeatedCards(
-        'pause-clope',
-        'Pause clope',
-        'Une petite pause qui fait redescendre la pression.',
-        heroImg,
-        4,
-        'mental',
-        1,
-    ),
-    // Nouveaux types de cartes Action
-    ...buildRepeatedCards(
-        'gerer-administratif',
-        'Gérer l\'administratif',
-        'Vous vous occupez des démarches administratives pour résoudre les problèmes.',
+        'administratif',
+        'Démarches administratives',
+        'Des papiers à remplir pour votre situation.',
         heroImg,
         6,
         'admin',
         1,
     ),
     ...buildRepeatedCards(
-        'appeler-famille',
-        'Appeler la famille',
-        'Un appel à vos proches pour remonter le moral.',
-        heroImg,
-        4,
         'social',
-        2,
+        'Activité sociale',
+        'Une sortie pour vous changer les idées.',
+        heroImg,
+        8,
+        'social',
+        1,
+    ),
+    ...buildRepeatedCards(
+        'sante',
+        'Santé',
+        'Prendre soin de votre bien-être.',
+        heroImg,
+        6,
+        'health',
+        1,
     ),
     ...buildRepeatedCards(
         'consulter-medecin',
         'Consulter un médecin',
         'Une consultation pour préserver votre santé.',
         heroImg,
-        3,
+        6,
         'health',
         1,
         -20, // Coût de la consultation
@@ -214,7 +280,7 @@ export const WORK_STUDY_CARDS: CardData[] = [
         'Demander de l\'aide',
         'Vous faites appel à votre réseau pour obtenir de l\'aide.',
         heroImg,
-        2,
+        4,
         'help',
         1,
     ),

@@ -6,7 +6,15 @@
 
 **Groupe :** BRATISLAVA × RABAT × PARIS  
 **Membres :** Ferencz ROUDET · Omar Farouk LASFAR · Sacha EHRMANNOS · Aymeric FENARD  
-**Évaluations T4 :** [lien 1](#) · [lien 2](#)
+**Évaluations T4 :**
+
+Liens d'évaluations :
+
+  - [Aquila Sohrabi](evaluations/evaluation-Aquila_Sohrabi.md)
+  - [Nathan Wilhelm](evaluations/evaluation-Nathan_Wilhelm.md)
+  - [Noah Gallusser](evaluations/evaluation-Noah_Gallusser.md)
+  - [Quentin Mey](evaluations/evaluation-Quentin_Mey.md)
+  - [Yanis Bentaleb](evaluations/evaluation-Yanis_Bentaleb.md)
 
 ---
 

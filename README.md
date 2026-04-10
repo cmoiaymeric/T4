@@ -26,7 +26,7 @@ En fonction du **personnage tiré** et du **plateau choisi**, le jeu est plus ou
 
 ## ⚙️ Jouer au jeu
 
-*lien ici*
+https://mobilization.netlify.app/
 
 ---
 

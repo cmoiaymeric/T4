@@ -24,13 +24,24 @@ Les étapes du projet tuteuré T2 sont les suivantes :
 
 # Propositions d'amélioration du cahier des charges
 
-- Proposition 1
-- Proposition 2
+Voir issues
 
 # Propositions d'amélioration du jeu
 
-- Proposition 1
-- Proposition 2
+- Agrandir le carré en bas à gauche avec l'inventaire des cartes, la lisibilité n'est pas très bonne.
+
+- Le système de santé mentale n'est pas bien implémenté, car plus de la moitié des cartes actions restaure la santé mentale, on arrive très facilement à 10.
+
+- Le système d'argent ne fonctionne pas, j'ai fait une partie en commençant à 100 et je l'ai finit à 100€. La case loyer/les cartes travailler ne fonctionnent pas? --> Implémenter un vrai système économique où on peut clairement voir combien la bourse rapporte, combien chaque carte travailler rapporte, le prix du loyer qui est débité du compte de l'étudiant..
+
+- Quand on passe un tour, l'animation n'est pas bien faite, tous les éléments du jeu se retrouve à gauche, puis quand le filtre flou avec "prochain tour" disparaît les éléments restent bloqué à gauche puis reviennent à leur emplacement. C'est juste un problème visuel.
+
+- Rajouter en dessous de chaque carte l'effet qu'elles ont (exemple +1 santé mentale)
+
+- Ca serait bien aussi de rajouter des cartes événements "faire les courses" pour -50€, car les courses font aussi parti des principales dépenses d'un étudiant avec le loyer.
+
+- Quand la partie est terminé, rajouter un récap complet de toutes les décisions du joueur (nombre de cartes actions joués, nombre de tours, pourquoi le joueur a obtenu la note "C" et pas une meilleur note..). 
+
 
 ## Grille d'évaluation T2 (à remplir par les membres du groupe T4)
 
@@ -112,18 +123,18 @@ Justifications :
   - [x] Le prototype ne s'exécute pas
 - Stabilité
   - [ ] Le prototype est parfaitement stable
-  - [ ] Le prototype est rarement instable
-  - [x] Le prototype est instable
+  - [X] Le prototype est rarement instable
+  - [ ] Le prototype est instable
 - Affordabilité
   - [ ] Toutes les instructions de jeu sont incluses dans le prototype au cours d'une partie normale.
   - [ ] Les instructions de jeu sont sous forme d'un manuel ou d'un tutoriel à part.
   - [x] Les instructions de jeu ne sont pas données.
 - Transmission du concept
   - [ ] J'ai appris quelque chose en jouant.
-  - [ ] J'ai eu de l'intérêt en jouant, mais sans rien apprendre.
-  - [x] Je n'ai pas eu d'intérêt en jouant.
+  - [X] J'ai eu de l'intérêt en jouant, mais sans rien apprendre.
+  - [ ] Je n'ai pas eu d'intérêt en jouant.
 
-Résumer en une phrase ce que vous avez éventuellement appris en jouant :
+Résumer en une phrase ce que vous avez éventuellement appris en jouant : A titre personnel je n'ai rien appris en jouant, car je sais que tous les étudiants ne partent pas sur un même pied d'égalité à l'université.
 
 Autres justifications :
 
@@ -131,18 +142,18 @@ Autres justifications :
 
 - Présentation du projet
   - [ ] Cette partie est informative et succincte (1 phrase).
-  - [ ] Cette partie est informative.
+  - [X] Cette partie est informative.
   - [ ] Cette partie n'est pas informative.
 - Captures d'écran
-  - [ ] Plusieurs captures d'écran soignées sont données.
+  - [X] Plusieurs captures d'écran soignées sont données.
   - [ ] Une capture d'écran est donnée.
   - [ ] Aucune capture d'écran n'est donnée.
 - Procédures d'installation et d'exécution
   - [ ] Cette partie est informative et succincte (1 phrase).
   - [ ] Cette partie est informative.
-  - [ ] Cette partie n'est pas informative.
+  - [X] Cette partie n'est pas informative.
 
-Justifications :
+Justifications : Le README est assez complet avec plusieurs captures d'écrans, cependant il manque de détails sur le déroulement exacte du jeu. Aucune information n'est donné pour tester en local le jeu.
 
 ## Cahier des charges 
 

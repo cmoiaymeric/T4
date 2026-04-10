@@ -33,7 +33,7 @@ Les étapes du projet tuteuré T2 sont les suivantes :
 - Proposition 2
 
 ## Grille d'évaluation T2 (à remplir par les membres du groupe T4)
-
+Ne nous a pas évalué, a proposé 3 améliorations via les issues.
 - Procédure
   - [ ] La procédure a été suivie à la lettre sans le moindre écart.
   - [ ] La procédure a été globalement suivie.
@@ -48,8 +48,8 @@ Les étapes du projet tuteuré T2 sont les suivantes :
   - [x] Moins de trois propositions d'améliorations sont faites.
 - Implication
   - [ ] L'implication T2 été vraiment été cruciale dans le processus du T4.
-  - [ ] L'implication T2 a permis d'améliorer le T4.
-  - [x] Il y a eu un défaut d'implication T2.
+  - [X] L'implication T2 a permis d'améliorer le T4.
+  - [ ] Il y a eu un défaut d'implication T2.
 
 ## Grille d'évaluation T2 (à remplir par l'enseignant)
 

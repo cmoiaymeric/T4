@@ -19,8 +19,7 @@ En fonction du **personnage tiré** et du **plateau choisi**, le jeu est plus ou
 ---
 
 ## 🖼️ Captures d'écran
-
-*À compléter*
+![menu du jeu](./mobilization/src/assets/screen1.png)
 
 ---
 

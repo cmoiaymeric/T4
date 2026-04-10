@@ -108,7 +108,8 @@ Le niveau de difficulté est déterminé par la combinaison **personnage × plat
 2. **Jouer jusqu'à 3 cartes Action** de son inventaire pour satisfaire l'exigence de la case
 3. **Valider la case** si les conditions sont remplies, sinon subir une pénalité
 4. **Mettre à jour les ressources** (santé mentale, argent)
-5. **Passer au tour suivant**
+5. **Piocher des cartes Actions si nécessaire** 
+6. **Passer au tour suivant**
 
 ---
 

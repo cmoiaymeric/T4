@@ -98,51 +98,53 @@ Voir issues
 
 ## GIT 
 - Organisation
-  - [ ] Les fichiers sources suivent une organisation et des règles de nommage clairement établie.
+  - [X] Les fichiers sources suivent une organisation et des règles de nommage clairement établie.
   - [ ] Les fichiers sources sont tous partagés et organisés.
-  - [x] Certains fichiers sources ne sont pas partagés ou leur organisation laisse à désirer.
+  - [ ] Certains fichiers sources ne sont pas partagés ou leur organisation laisse à désirer.
 - Versioning
   - [ ] La granularité des commits est pertinente et les commits sont clairement et systématique renseignés.
-  - [ ] La granularité des commits n'est pas pertinente ou les commits ne sont pas clairement et systématiquement renseignés.
-  - [x] La granularité des commits n'est pas pertinente et les commits ne sont pas clairement et systématiquement renseignés.
+  - [X] La granularité des commits n'est pas pertinente ou les commits ne sont pas clairement et systématiquement renseignés.
+  - [ ] La granularité des commits n'est pas pertinente et les commits ne sont pas clairement et systématiquement renseignés.
 - Droits d'accès
-  - [ ] Julien Gossa est owner du dépôt GIT et ce dépôt est accessible à tous.
+  - [X] Julien Gossa est owner du dépôt GIT et ce dépôt est accessible à tous.
   - [ ] Julien Gossa est owner du dépôt GIT.
-  - [x] Julien Gossa n'est pas owner du dépôt GIT.
+  - [ ] Julien Gossa n'est pas owner du dépôt GIT.
 
-Justifications :
+Justifications : La plupart des commits sont clairement renseignés mais d'autres ne le sont pas. Tout le monde a participé à part égale au projet. Les commits sont fréquents. Les fichiers sont bien organisés, le répertoire est propre.
 
 ## Prototype
-- Installation
+- Installation 
   - [ ] Le prototype s'installe sans effort.
   - [ ] Le prototype s'installe en suivant une procédure.
-  - [x] Le prototype ne s'installe pas.
+  - [ ] Le prototype ne s'installe pas.
 - Exécution
   - [ ] Le prototype s'exécute en cliquant sur une icône.
   - [ ] Le prototype s'exécute en suivant une procédure.
-  - [x] Le prototype ne s'exécute pas
+  - [ ] Le prototype ne s'exécute pas
 - Stabilité
-  - [ ] Le prototype est parfaitement stable
-  - [X] Le prototype est rarement instable
+  - [X] Le prototype est parfaitement stable
+  - [ ] Le prototype est rarement instable
   - [ ] Le prototype est instable
 - Affordabilité
   - [ ] Toutes les instructions de jeu sont incluses dans le prototype au cours d'une partie normale.
-  - [ ] Les instructions de jeu sont sous forme d'un manuel ou d'un tutoriel à part.
-  - [x] Les instructions de jeu ne sont pas données.
+  - [X] Les instructions de jeu sont sous forme d'un manuel ou d'un tutoriel à part.
+  - [ ] Les instructions de jeu ne sont pas données.
 - Transmission du concept
   - [ ] J'ai appris quelque chose en jouant.
   - [X] J'ai eu de l'intérêt en jouant, mais sans rien apprendre.
   - [ ] Je n'ai pas eu d'intérêt en jouant.
 
+Commentaire : Installation et éxécution non notable car il n'y a pas d'instruction dans le README pour le moment.
+
 Résumer en une phrase ce que vous avez éventuellement appris en jouant : A titre personnel je n'ai rien appris en jouant, car je sais que tous les étudiants ne partent pas sur un même pied d'égalité à l'université.
 
-Autres justifications :
+Autres justifications : Ce jeu conviendrait aux lycéens qui ne sont pas encore dans le milieu étudiant. J'ai eu de l'intérêt à y jouer, mais je n'ai rien appris comme ce sont des connaissances que j'ai déjà. Il n'y a pas de tutoriel qui explique pas à pas comment jouer, mais le readme explique dans les grandes lignes comment ça fonctionne et comment obtenir un bon score. De façon général ce n'est pas sorcier, l'ajout d'un tutoriel n'est pas nécessaire. Le prototype est parfaitement stable, il n'y a aucun bug qui empêche le bon déroulement du jeu. 
 
 ## Présentation README.md
 
 - Présentation du projet
-  - [ ] Cette partie est informative et succincte (1 phrase).
-  - [X] Cette partie est informative.
+  - [X] Cette partie est informative et succincte (1 phrase).
+  - [ ] Cette partie est informative.
   - [ ] Cette partie n'est pas informative.
 - Captures d'écran
   - [X] Plusieurs captures d'écran soignées sont données.
@@ -153,50 +155,51 @@ Autres justifications :
   - [ ] Cette partie est informative.
   - [X] Cette partie n'est pas informative.
 
-Justifications : Le README est assez complet avec plusieurs captures d'écrans, cependant il manque de détails sur le déroulement exacte du jeu. Aucune information n'est donné pour tester en local le jeu.
+Justifications : Le README est complet avec plusieurs captures d'écrans, le projet est très bien présenté, tout est clair. Aucune information n'est donné pour tester en local le jeu, mais un lien est donné pour tester le jeu sur internet.
 
 ## Cahier des charges 
 
 Pour un exemple de ce qui est attenu, voir https://gitlab.unistra.fr/T234/t4-exemple
 
 - Objectifs pédagogiques
-  - [ ] Cette partie est informative et correspond au style de l'exemple.
+  - [X] Cette partie est informative et correspond au style de l'exemple.
   - [ ] Cette partie est informative.
   - [ ] Cette partie n'est pas informative.
 - Objectifs pédagogiques avancés 
-  - [ ] Cette partie est informative et correspond au style de l'exemple.
+  - [X] Cette partie est informative et correspond au style de l'exemple.
   - [ ] Cette partie est informative.
   - [ ] Cette partie n'est pas informative.
 - Références
-  - [ ] Cette partie est informative et correspond au style de l'exemple.
+  - [X] Cette partie est informative et correspond au style de l'exemple.
   - [ ] Cette partie est informative.
   - [ ] Cette partie n'est pas informative.
 - Description des fonctionnalités (hors interface et actions)
-  - [ ] Cette partie est informative et correspond au style de l'exemple.
+  - [X] Cette partie est informative et correspond au style de l'exemple.
   - [ ] Cette partie est informative.
   - [ ] Cette partie n'est pas informative.
 - Interface
   - [ ] Cette partie est informative et correspond au style de l'exemple.
   - [ ] Cette partie est informative.
-  - [ ] Cette partie n'est pas informative.
+  - [X] Cette partie n'est pas informative.
 - Actions du joueur
-  - [ ] Cette partie est informative et correspond au style de l'exemple.
+  - [X] Cette partie est informative et correspond au style de l'exemple.
   - [ ] Cette partie est informative.
   - [ ] Cette partie n'est pas informative.
 - Scénarios
-  - [ ] Cette partie est informative et correspond au style de l'exemple.
+  - [X] Cette partie est informative et correspond au style de l'exemple.
   - [ ] Cette partie est informative.
   - [ ] Cette partie n'est pas informative.
 - Contraintes de développement
-  - [ ] Cette partie est informative et correspond au style de l'exemple.
+  - [X] Cette partie est informative et correspond au style de l'exemple.
   - [ ] Cette partie est informative.
   - [ ] Cette partie n'est pas informative.
 - Fonctionnalités et scénarios avancés
-  - [ ] Cette partie est informative et correspond au style de l'exemple.
+  - [X] Cette partie est informative et correspond au style de l'exemple.
   - [ ] Cette partie est informative.
   - [ ] Cette partie n'est pas informative.
 
 Justifications :
+Le cahier des charges est très bien conçu et correspond à ce qui est attendu dans le modèle de démo. Tout est très bien expliqué. Cependant il manque le paragraphe sur l'interface.
 
 ## Résultat T4
 - Total d'item « Excellent » (2 point) : 
